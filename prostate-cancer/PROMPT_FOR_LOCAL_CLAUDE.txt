@@ -1,0 +1,48 @@
+You are the LOCAL Claude on my WSL laptop. I need you to transfer my entire
+"Bone-Met-Project" folder to our HPC, coordinating with the destination Claude
+that is already running there. The destination side is fully prepared.
+
+DESTINATION (already set up by the other Claude — do not change any of this):
+  host:            mileena.igs.umaryland.edu
+  user:            arifai
+  target folder:   /autofs/projects-t3/hussain/prostate-cancer/
+  auth:            passwordless — this laptop's ed25519 key is already in the
+                   server's authorized_keys (same key used for the previous
+                   pca-bcr transfer to mileena).
+  server host-key fingerprint to expect on first connect:
+                   SHA256:83ywBRnhLTjqWnKNLOphQnA5b0KpeKal2VTZFhuYmeI  (ED25519)
+
+The HPC canNOT pull from this laptop (WSL runs no sshd), so YOU must PUSH.
+
+DO THIS:
+
+1. Locate the local "Bone-Met-Project" folder (search under ~ if unsure) and
+   confirm its absolute path with me before sending.
+
+2. Push the whole tree with rsync (contents land directly inside
+   prostate-cancer/, note the trailing slash on the source):
+
+   rsync -avh --progress \
+     /ABSOLUTE/PATH/TO/Bone-Met-Project/ \
+     arifai@mileena.igs.umaryland.edu:/autofs/projects-t3/hussain/prostate-cancer/
+
+   If rsync is missing on the remote, add:  --rsync-path=/usr/bin/rsync
+   If the first connection prompts about the host key, verify it matches the
+   SHA256 fingerprint above before accepting.
+
+3. Verify completeness. The destination folder contains verify_transfer.sh.
+   After rsync finishes, copy it locally is NOT needed — instead fetch it and
+   run the SAME check on the SOURCE:
+
+     scp arifai@mileena.igs.umaryland.edu:/autofs/projects-t3/hussain/prostate-cancer/verify_transfer.sh /tmp/verify_transfer.sh
+     bash /tmp/verify_transfer.sh /ABSOLUTE/PATH/TO/Bone-Met-Project
+
+   Then tell me the printed "files", "total bytes", and "manifest digest".
+   The destination Claude will run the same script on its side; the manifest
+   digests must be IDENTICAL. Paste the source-side output back to me so I can
+   relay it to the destination Claude for a match.
+
+4. Report any files rsync skipped (permissions, sockets, broken symlinks) so
+   nothing is silently dropped.
+
+Do not delete anything on the laptop. This is a copy, not a move.

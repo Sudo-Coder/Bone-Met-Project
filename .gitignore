@@ -1,18 +1,42 @@
-# ===== Large data & model files (too big for GitHub — kept local only) =====
-Data/
-Cleaned_Data/
-*.h5ad
-*.h5
-markers_scvi.csv
+# ============================================================
+# Bone-Met-Project: track ONLY the two analysis projects' CODE.
+# Large data/models stay local — GitHub rejects files > 100 MB.
+# ============================================================
 
-# Temp / partial files
-.integrated.h5ad.*
-*.tmp
+# ignore everything at the repo root by default...
+/*
+# ...except these:
+!/.gitignore
+!/README.md
+!/prostate-cancer/
+!/kidney-cancer/
 
-# ===== Python / Jupyter junk =====
-__pycache__/
-*.pyc
-.ipynb_checkpoints/
-.DS_Store
-.venv/
-env/
+# inside the tracked projects, still exclude big data & run artifacts
+**/Data/
+**/Cleaned_Data/
+**/env_packs/
+**/envs/
+**/celloracle_objects/
+**/*_integration_model/
+**/annotation_model/
+**/*.h5ad
+**/*.h5
+**/*.loom
+**/*.mtx
+**/*.count.csv
+**/markers_scvi.csv
+**/*.log
+**/*.err
+**/*.out
+**/*.tmp
+**/.*.h5ad.*
+
+# python / jupyter junk
+**/__pycache__/
+**/.ipynb_checkpoints/
+**/*.pyc
+**/.DS_Store
+
+# large generated analysis outputs (decoupler / SCENIC / cellrank) — regenerable, kept local
+**/*.parquet
+**/additional_analysis/outputs/

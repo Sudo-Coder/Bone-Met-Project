@@ -1,0 +1,18 @@
+# ===== Large data & model files (too big for GitHub — kept local only) =====
+Data/
+Cleaned_Data/
+*.h5ad
+*.h5
+markers_scvi.csv
+
+# Temp / partial files
+.integrated.h5ad.*
+*.tmp
+
+# ===== Python / Jupyter junk =====
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+.venv/
+env/
