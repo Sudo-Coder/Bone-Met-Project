@@ -4,8 +4,8 @@ One figure/table per claim. Each entry: plain-language interpretation · exact s
 size + 95% CI, p, FDR, adjustment) · **claim-ladder tier** · figure/table path. Unsupported / null
 results are stated explicitly, never omitted.
 
-Status: **Phase 0 + 0.5 + 1 + 1.5 + 2 + 3 + 4 complete.** Paused for review with combined Phase 3/4
-summary. Phase 5 (inferCNV) optional/deferred; manuscript synthesis not started pending review.
+Status: **Phase 0 + 0.5 + 1 + 1.5 + 2 + 3 + 4 complete (PCa comparator in ../pca_comparator/).** Paused for review.
+Phase 5 (inferCNV) optional/deferred; manuscript synthesis not started pending review.
 
 > **Correction (2026-07-03):** Phase 0/1 used `myeloid_integrated_final_label.h5ad`; the canonical
 > prostate myeloid object is `myeloid_FINAL.h5ad`. The two were **verified data-identical** (same 11,760
@@ -339,3 +339,8 @@ Figures: `figP34_1_tcga_os_forest.png`, `figP34_2_immune_evasion_contrast.png`. 
 `phase3_adjusted_associations.csv`, `phase3_headtohead_complement_vs_panTAM.csv`, `phase4_tcga_kirc_cox.csv`,
 `phase4_braun_nivo.csv`, `phase4_braun_cm025_armINT.csv`, `phase34_verdict_table.csv`, `module_interactions.csv`,
 `complement_source_by_class.csv`.
+
+---
+
+## PCa comparator (moved)
+The prostate (PCa) mirror analysis lives in its own folder: `../pca_comparator/` (RESULTS: `PCA_COMPARATOR_RESULTS.md`). Summary: the complement-high CLEC_LAM program is present + TAM-localized in PCa but RCC-skewed and functionally RCC-specific (immune-associated only in RCC); ATF3/NF-κB core is conserved across both.

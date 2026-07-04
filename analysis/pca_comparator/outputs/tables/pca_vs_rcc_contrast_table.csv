@@ -1,0 +1,9 @@
+module,RCC_TvB_SD,PCa_TvB_SD,PCa_TvB_p,interaction,interaction_p,PCa_TAM_localization_delta,PCa_loc_p,RCC_cytotox,PCa_cytotox,RCC_exhaustion,PCa_exhaustion,verdict
+complement_C1Q,1.41,1.0,0.002,0.21,0.003,0.113,0.016,-0.82(p0.04),-0.02(p0.87),0.51(p0.05),0.06(p0.83),"present both + TAM-localized in PCa, RCC-SKEWED (interaction sig) + RCC-functionally-specific (immune-assoc only in RCC)"
+CLEC_LAM8,1.37,1.03,0.001,0.106,0.012,0.068,0.016,-0.77(p0.04),0.01(p0.95),0.44(p0.07),-0.14(p0.58),"present both + TAM-localized in PCa, RCC-SKEWED (interaction sig) + RCC-functionally-specific (immune-assoc only in RCC)"
+RCC_skew_CORE,1.37,1.03,0.0,0.138,0.01,,,-0.78(p0.03),0.01(p0.96),0.41(p0.09),-0.12(p0.64),"present both + TAM-localized in PCa, RCC-SKEWED (interaction sig) + RCC-functionally-specific (immune-assoc only in RCC)"
+APOE_TREM2,1.27,0.92,0.0,0.05,0.132,0.041,0.016,-0.55(p0.08),0.02(p0.87),0.26(p0.22),-0.32(p0.22),shared (present both; not RCC-skewed)
+MERTK_GPNMB,1.21,0.96,0.0,0.012,0.268,,,-0.06(p0.82),0.03(p0.86),0.35(p0.03),-0.33(p0.19),shared (present both; not RCC-skewed)
+SPP1_TAM,1.33,1.17,0.0,0.02,0.626,0.056,0.297,0.61(p0.12),0.04(p0.81),0.51(p0.04),-0.39(p0.18),shared (present both; not RCC-skewed)
+panTAM,1.14,1.0,0.0,-0.002,0.893,,,-0.09(p0.77),-0.03(p0.87),0.18(p0.38),-0.04(p0.90),"shared generic (both tumor-induced, no skew)"
+ATF3_NFkB,1.54,1.52,0.0,0.079,0.033,0.102,0.016,-,-0.31(p0.21),-,0.37(p0.41),CONSERVED core (both strong; small RCC skew)

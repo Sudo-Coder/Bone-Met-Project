@@ -59,3 +59,7 @@
 **/outputs/tables/*status.md
 **/PHASE2_STATUS
 **/outputs/tables/_superseded_wrongobj/
+
+# CellChat/CopyKAT input-staging intermediates (regenerable from scripts)
+**/outputs/tables/cellchat_input/
+**/outputs/tables/copykat_input/
