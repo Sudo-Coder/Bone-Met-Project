@@ -1,0 +1,9 @@
+cancer_type,condition,n_samples,n_ge10,median_cells
+RCC,Benign,4,0,1.5
+RCC,Distal,3,1,6.0
+RCC,Involved,4,1,6.0
+RCC,Tumor,9,9,814.0
+prostate,Benign,7,5,21.0
+prostate,Distal,7,7,58.0
+prostate,Involved,6,6,81.5
+prostate,Tumor,7,7,307.0

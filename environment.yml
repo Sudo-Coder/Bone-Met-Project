@@ -1,0 +1,36 @@
+# Python environment for the RCC CLEC_LAM reinterpretation (Phase 0–5 Python side).
+# Base pins match the working `envs/sc-general-analysis` env on the IGS HPC.
+# scVI/GPU work uses the separate `envs/scvi_gpu` env (torch+CUDA on the V100 node); see
+# analysis/DATA_MANIFEST.md and memory note scvi-gpu-env.
+name: rcc_reinterp
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - numpy=2.4.*
+  - pandas=2.3.*
+  - scipy=1.17.*
+  - scikit-learn
+  - statsmodels=0.14.*
+  - matplotlib
+  - seaborn
+  - h5py
+  - numba
+  - leidenalg
+  - igraph
+  - pip
+  - pip:
+      - scanpy==1.11.5
+      - anndata==0.12.16
+      - decoupler            # score_genes / AUCell / UCell / MLM; pathway activity
+      - gseapy==1.2.1        # ssGSEA/GSEA (exploratory)
+      - lifelines==0.30.3    # survival (Python-side cross-check of R Cox)
+      - pertpy              # scCODA (compositional DA) + Milo (neighborhood DA)
+      - scikit-misc         # HVG (loess)
+      - zellkonverter       # not py; placeholder removed at build if unavailable
+      - anndata2ri          # AnnData<->SCE bridge for R interop
+      - session-info
+# Reproducibility: set PYTHONHASHSEED=0; scripts fix numpy/scanpy seed=0.
+# Build on scratch caches (HOME is 10 GB): PIP_CACHE_DIR=/autofs/scratch/$USER/pip_cache,
+# TMPDIR=/autofs/scratch/$USER/tmp. Compute nodes have NO internet — build on login node.

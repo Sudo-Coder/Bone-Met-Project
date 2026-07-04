@@ -1,0 +1,9 @@
+axis,ligand,ligand_senders,ligand_tumor_mean,ligand_benign_mean,ligand_delta_TvsB,ligand_p,receptors,receptor_detect_in_tumorTAM,note
+complement_C1QA,C1QA,TAM_CLEC_LAM;TAM_other;MSC,1.744,0.003,1.741,0.002586468,C1QBP,{'C1QBP': 0.123},C1q macrophage-produced; autocrine/paracrine
+complement_C1QB,C1QB,TAM_CLEC_LAM;TAM_other,2.29,0.479,1.81,0.026236704,C1QBP,{'C1QBP': 0.123},macrophage-produced
+complement_C1QC,C1QC,TAM_CLEC_LAM;TAM_other,2.286,0.0,2.286,0.01549115,C1QBP,{'C1QBP': 0.123},macrophage-produced
+complement_C3,C3,MSC;Pericyte;Tumor,0.221,0.073,0.148,0.15770438,C3AR1;ITGAM;ITGB2,"{'C3AR1': 0.302, 'ITGAM': 0.133, 'ITGB2': 0.668}",stromal/tumor C3 -> TAM CR
+APOE_TREM2,APOE,TAM_CLEC_LAM;TAM_other;Tumor,0.551,0.589,-0.038,0.96160305,TREM2;LRP1;SORL1,"{'TREM2': 0.452, 'LRP1': 0.269, 'SORL1': 0.261}",APOE macrophage+tumor derived; both directions
+GAS6_MERTK,GAS6,MSC;Pericyte;Endothelial;TAM_other,0.179,0.594,-0.415,0.021616394,MERTK;AXL,"{'MERTK': 0.159, 'AXL': 0.265}",efferocytosis
+PROS1_MERTK,PROS1,Tumor;MSC;Endothelial,0.132,0.13,0.002,0.85981923,MERTK;AXL,"{'MERTK': 0.159, 'AXL': 0.265}",efferocytosis
+TGFB1_TGFBR,TGFB1,Tumor;MSC;Pericyte;TAM_other,0.391,0.075,0.316,0.00041229505,TGFBR1;TGFBR2,"{'TGFBR1': 0.104, 'TGFBR2': 0.167}",APOE/TGFb/ICB-resistance link

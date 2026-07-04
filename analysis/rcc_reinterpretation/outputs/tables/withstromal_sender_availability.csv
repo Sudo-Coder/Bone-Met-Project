@@ -1,0 +1,14 @@
+row_0,Benign_immune,Benign_stroma,Distal,Involved,Tumor
+B,5458,2,963,679,1478
+Endothelial,0,603,0,0,646
+Erythroid,23,3,305,122,175
+MSC,0,6001,0,0,1887
+Myeloid_other,1543,7,2842,3499,4240
+Osteoblast,0,0,0,0,6
+Osteoclast,0,0,0,0,94
+Pericyte,0,4971,0,0,600
+Progenitors,834,188,877,309,500
+TAM,3,1,14,35,3289
+TIM,3,0,12,26,2543
+T_NK,13089,3663,8340,8595,16366
+Tumor,0,51,0,0,1944

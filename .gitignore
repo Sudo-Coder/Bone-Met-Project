@@ -10,6 +10,10 @@
 !/README.md
 !/prostate-cancer/
 !/kidney-cancer/
+!/analysis/
+!/environment.yml
+!/install.R
+!/renv.lock
 
 # inside the tracked projects, still exclude big data & run artifacts
 **/Data/
@@ -40,3 +44,18 @@
 # large generated analysis outputs (decoupler / SCENIC / cellrank) — regenerable, kept local
 **/*.parquet
 **/additional_analysis/outputs/
+
+# large CellChat objects (regenerable)
+**/outputs/tables/*.rds
+**/rcc_ck_copykat_raw*.txt
+
+# analysis process/meta docs — kept local, NOT published to the paper repo
+/analysis/DATA_MANIFEST.md
+/analysis/rcc_reinterpretation/CLAUDE.md
+/analysis/rcc_reinterpretation/CHANGELOG.md
+/analysis/rcc_reinterpretation/CORRECTION_prostate_object.md
+/analysis/rcc_reinterpretation/DISCUSSION_VALIDATION.md
+/analysis/rcc_reinterpretation/PRIOR_ART_AND_CLAIMS.md
+**/outputs/tables/*status.md
+**/PHASE2_STATUS
+**/outputs/tables/_superseded_wrongobj/

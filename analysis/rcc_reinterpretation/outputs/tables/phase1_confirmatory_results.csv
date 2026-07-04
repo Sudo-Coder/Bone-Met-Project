@@ -1,0 +1,16 @@
+test,tier,estimate,ci_low,ci_high,p,note,fdr_confirmatory
+C1_RCC_tumor_vs_benign_allmyeloid,tumor-enriched (patient-level),0.17446288684297284,0.09942973504726214,0.24949603863868353,5.181974348937334e-06,n_tumor=9 n_benign=7 tumor_mean=0.1766 benign_mean=0.0021,7.772961523406002e-06
+C2_interaction_ownBenign_allmyeloid,"RCC-skewed (interaction, HEADLINE)",0.10634111831285453,0.02303339103062442,0.18964884559508466,0.012352466889368037,method=mixedlm,0.012352466889368037
+C2b_interaction_ownBenign_OLScluster,RCC-skewed (sensitivity),0.10634111831283768,0.003696231344430964,0.2089860052812444,0.042301468667090635,,
+C3_fraction_interaction_binomialGLM,RCC-skewed fraction (interaction),4.754960132913931,-64240.385056065694,64249.894976331525,0.9998842569956866,log-OR CLEC_LAM-hi; cluster SE,
+C3b_fraction_interaction_arcsinLMM,RCC-skewed fraction (arcsin sensitivity),0.5152033829691779,0.326158194661756,0.7042485712765998,9.219352547123216e-08,,2.7658057641369653e-07
+C2_interaction_scVInorm_ownBenign,"RCC-skewed (integration arm: scVI-normalized, MAIN)",0.1590505985530621,0.06859254792623579,0.24950864917988844,0.0005684680449739016,CORE=8/8,
+C2_interaction_rawCommon_ownBenign,RCC-skewed (conservative common-space supplemental),0.08723104967856952,0.010975356018914334,0.16348674333822472,0.024954938297747548,CORE=8/8,
+C2_benignRef_RCCbenign,"RCC-skewed (benign-ref robustness, scVI)",0.15905059855306275,0.048961460817892544,0.26913973628823296,0.004630911504080317,n_RCC_units=16,
+C2_benignRef_PRObenign_forRCCarm,"RCC-skewed (benign-ref robustness, scVI)",0.19007297259801448,0.08052302933981913,0.2996229158562098,0.000672366925004191,n_RCC_units=16,
+C2_benignRef_AVGbenign,"RCC-skewed (benign-ref robustness, scVI)",0.17456178557553859,0.06487679520436852,0.28424677594670866,0.0018131257517903625,n_RCC_units=16,
+C2_interaction_datasetRegressed,RCC-skewed (integration arm3: dataset-regressed),0.10634111831283755,0.0036962313444307837,0.2089860052812443,0.042301468667091,,
+D1_composition_TAMTIMfrac_interaction,"composition (TAM+TIM fraction, arcsin)",0.2318049355928153,-0.10913126305126353,0.5727411342368941,0.1826652750644029,is RCC-skew driven by more TAM+TIM?,
+D2_state_withinTAMTIM_tumor_RCCvsPro,"state (within-TAM+TIM CORE, tumor-only)",0.13748775528842175,0.03524636988234381,0.2397291406944997,0.008397983109310187,RCC_tumor_n=9 pro_tumor_n=7,
+D2b_state_prostate_withinTAMTIM_TvsB,state (prostate within-TAM+TIM tumor vs benign),0.05723759444371169,-0.014376185905870885,0.12885137479329425,0.11722952864566204,,
+D3_interaction_adjTAMTIMfrac_RESIDUAL,residual (interaction | TAM+TIM frac) — GUARDED,0.07995448330241724,0.012632983548007917,0.14727598305682654,0.019925156261580833,if attenuated: skew is compositional (=canalization); do NOT read as null,
