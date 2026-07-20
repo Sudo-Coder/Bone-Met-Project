@@ -1,10 +1,4 @@
 #!/usr/bin/env python
-"""06_pca_mirror.py — LOCKED comparator: is the RCC complement_C1Q program present in PCa myeloid?
-Mirrors the RCC framework (04/02) for prostate. Scores modules (+ATF3/NFkB) on both myeloid objects,
-patient-level pseudobulk; runs PCa tumor-vs-benign + tumor/involved/distal gradient + within-PCa-tumor
-TAM/TIM localization of complement_C1Q; emits a PCa-vs-RCC module contrast table.
-Run: envs/rcc_reinterp_venv/bin/python. Seed 0.
-"""
 import os, warnings
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, anndata as ad, decoupler as dc
@@ -54,7 +48,6 @@ pb_tt=pseudobulk(pc[pc.compartment.isin(["TAM","TIM"])]); pb_tt=pb_tt[pb_tt.n_ce
 pb.to_csv(os.path.join(TAB,"pca_mirror_pseudobulk_all_myeloid.csv"),index=False)
 
 def tvb(dfc,m):
-    """tumor-vs-benign Delta within one cancer (all-myeloid pseudobulk), mixed +patient RE; SD units."""
     d=dfc[dfc.condition.isin(["Tumor","Benign"])].dropna(subset=[m]).copy()
     if d[m].nunique()<3 or (d.condition=="Benign").sum()<3 or (d.condition=="Tumor").sum()<3: return (np.nan,)*5
     d["condition"]=pd.Categorical(d["condition"],["Benign","Tumor"]); sd=float(d[m].std())
@@ -66,7 +59,6 @@ def tvb(dfc,m):
         ci=mm.conf_int().loc["C(condition, Treatment('Benign'))[T.Tumor]"]; e,se,p=mm.params[1],(ci[1]-ci[0])/3.92,mm.pvalues[1]
     return e,e-1.96*se,e+1.96*se,p,sd
 def gradient(dfc,m):
-    """linear trend across ordered condition Benign<Distal<Involved<Tumor (all-myeloid), patient cluster."""
     order={"Benign":0,"Distal":1,"Involved":2,"Tumor":3}
     d=dfc[dfc.condition.isin(order)].dropna(subset=[m]).copy(); d["ord"]=d.condition.map(order)
     if len(d)<10: return (np.nan,np.nan,np.nan)
@@ -79,7 +71,7 @@ INT_coef="C(cancer_type, Treatment('prostate'))[T.RCC]:C(condition, Treatment('B
 for m in MODULES:
     rcc=tvb(pb[pb.cancer_type=="RCC"],m); pca=tvb(pb[pb.cancer_type=="prostate"],m)
     gr=gradient(pb[pb.cancer_type=="prostate"],m)
-    # interaction
+
     dd=pb[pb.condition.isin(["Tumor","Benign"])].dropna(subset=[m]).copy()
     dd["condition"]=pd.Categorical(dd["condition"],["Benign","Tumor"]); dd["cancer_type"]=pd.Categorical(dd["cancer_type"],["prostate","RCC"])
     try:
@@ -95,12 +87,11 @@ C=pd.DataFrame(rows)
 C["PCa_TvB_FDR"]=multipletests(C["PCa_p"].fillna(1),method="fdr_bh")[1]
 C.to_csv(os.path.join(TAB,"pca_vs_rcc_module_contrast.csv"),index=False)
 
-# within-PCa-tumor localization: complement_C1Q (+key) in TAM+TIM vs Mono (tumor samples)
 loc=[]
 pt=pc[(pc.cancer_type=="prostate")&(pc.condition=="Tumor")].copy()
 pt["grp"]=np.where(pt.compartment.isin(["TAM","TIM"]),"TAM_TIM",np.where(pt.compartment.isin(["Mono1","Mono2","Mono3"]),"Mono","other"))
 for m in ["complement_C1Q","CLEC_LAM8","APOE_TREM2","SPP1_TAM","ATF3_NFkB"]:
-    # patient-level mean per grp
+
     g=pt[pt.grp.isin(["TAM_TIM","Mono"])].groupby(["patient_id","grp"],observed=True)[m].mean().reset_index()
     piv=g.pivot(index="patient_id",columns="grp",values=m).dropna()
     if len(piv)>=4:

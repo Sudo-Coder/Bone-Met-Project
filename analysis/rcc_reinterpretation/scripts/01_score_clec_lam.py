@@ -1,17 +1,4 @@
 #!/usr/bin/env python
-"""01_score_clec_lam.py — Phase 1 step 1: define CLEC_LAM CORE state and score it.
-
-Per-object (RCC + prostate myeloid), in each object's own log-normalized space:
-  - engineer patient_id / cancer_type / dataset / condition / compartment / is_benign_shared
-  - CORE gene detection rates (per cancer, per TAM/TIM)
-  - TIM comparability check across cancers (marker profile correlation) BEFORE any TAM+TIM pooling
-  - continuous CORE score two ways: sc.tl.score_genes (additive) + decoupler AUCell (rank-based)
-  - method concordance (Spearman)
-  - thresholded CLEC_LAM-high (top 10/15/20% within TAM+TIM, + 2-comp GMM) — SECONDARY
-Writes per-cell score+meta tables for 02_composition_models.py.
-
-Run: envs/rcc_reinterp_venv/bin/python (scanpy + decoupler). Seed 0.
-"""
 import os, sys, json, warnings
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, scanpy as sc, anndata as ad, decoupler as dc
@@ -30,7 +17,7 @@ OBJS = {
   "prostate": dict(path="prostate-cancer/Cleaned_Data/myeloid_FINAL.h5ad",
                    label_col="scanvi_labels_annotation_model_refined"),
 }
-# marker panels for the TIM comparability check
+
 MARK = {
   "monocyte":     ["FCN1","VCAN","S100A8","S100A9","LYZ","CD14"],
   "TAM_resident": ["C1QA","C1QB","APOE","MRC1","CD68","MERTK","TREM2"],
@@ -39,16 +26,16 @@ MARK = {
 }
 
 def parse_patient(sample):
-    s = str(sample).split("_",1)[-1].replace(".count","")     # RCC-BM9-Tumor / BMET3-Involved / BMM2-Benign-immune
+    s = str(sample).split("_",1)[-1].replace(".count","")
     parts = s.split("-")
-    # patient token = everything up to the site keyword
+
     site_kw = {"Tumor","Involve","Involved","Noninvolved","Distal","Benign"}
     toks=[]
     for p in parts:
         if p in site_kw or p.startswith("Benign"): break
         toks.append(p)
-    pid = "-".join(toks)                                       # RCC-BM9 / BMET3 / BMM2
-    pid = pid.replace("RCC-","")                               # BM9
+    pid = "-".join(toks)
+    pid = pid.replace("RCC-","")
     return pid
 
 def norm_condition(c):
@@ -56,8 +43,6 @@ def norm_condition(c):
     return {"Involve":"Involved","Noninvolved":"Distal"}.get(c, c)
 
 def get_lognorm(a):
-    """Return an AnnData on the full gene set with log-normalized X for scoring.
-    RCC: raw.X is log-norm (16215 g). prostate: X==raw is log-norm (10809 g)."""
     if a.raw is not None and a.raw.n_vars >= a.n_vars:
         s = a.raw.to_adata()
     else:
@@ -85,7 +70,7 @@ for tag, cfg in OBJS.items():
 
     s = get_lognorm(a)
     present = [g for g in CORE if g in s.var_names]
-    # ---- CORE detection rates (fraction cells with expr>0) overall + TAM + TIM ----
+
     det={}
     for grp, mask in [("all", np.ones(s.n_obs,bool)),
                       ("TAM", (a.obs["compartment"]=="TAM").values),
@@ -97,7 +82,6 @@ for tag, cfg in OBJS.items():
         det[grp]["_n"]=int(mask.sum())
     report["core_detection"][tag]=det
 
-    # ---- TIM comparability marker profile (mean log-norm expr per compartment) ----
     prof={}
     for panel,genes in MARK.items():
         gg=[g for g in genes if g in s.var_names]
@@ -107,25 +91,23 @@ for tag, cfg in OBJS.items():
             X=s[m][:,gg].X; X=X.toarray() if hasattr(X,"toarray") else np.asarray(X)
             prof[f"{comp}|{panel}"]=float(X.mean())
     report["tim_comparability"][tag]={"profile_means":prof}
-    # store TIM per-gene mean vector for cross-cancer correlation
+
     tim_genes=[g for g in (MARK["monocyte"]+MARK["TAM_resident"]+MARK["inflammatory"]) if g in s.var_names]
     m=(a.obs["compartment"]=="TIM").values
     X=s[m][:,tim_genes].X; X=X.toarray() if hasattr(X,"toarray") else np.asarray(X)
     report["tim_comparability"][tag]["tim_gene_means"]=dict(zip(tim_genes, X.mean(0).tolist()))
 
-    # ---- scoring ----
     sc.tl.score_genes(s, present, score_name="CLEC_LAM_addmodule", random_state=0)
     net=pd.DataFrame({"source":"CLEC_LAM_CORE","target":present,"weight":1.0})
     dc.mt.aucell(s, net, tmin=3, verbose=False)
     s.obs["CLEC_LAM_aucell"]=s.obsm["score_aucell"]["CLEC_LAM_CORE"].values
 
     rho,_=spearmanr(s.obs["CLEC_LAM_addmodule"], s.obs["CLEC_LAM_aucell"])
-    # concordance within TAM+TIM too
+
     tt=a.obs["compartment"].isin(["TAM","TIM"]).values
     rho_tt,_=spearmanr(s.obs["CLEC_LAM_addmodule"][tt], s.obs["CLEC_LAM_aucell"][tt])
     report["concordance"][tag]=dict(spearman_all=float(rho), spearman_TAM_TIM=float(rho_tt), n_TAM_TIM=int(tt.sum()))
 
-    # ---- thresholded high-cells within TAM+TIM (SECONDARY) ----
     thr={}
     score=s.obs["CLEC_LAM_aucell"].values
     idx_tt=np.where(tt)[0]
@@ -142,7 +124,6 @@ for tag, cfg in OBJS.items():
                     means=gm.means_.ravel().tolist(), weights=gm.weights_.tolist())
     report["thresholds"][tag]=thr
 
-    # ---- save per-cell table ----
     keep=["patient_id","cancer_type","dataset","condition","compartment","is_benign_shared","Sample",
           "CLEC_LAM_addmodule","CLEC_LAM_aucell","high_top10","high_top15","high_top20","high_gmm"]
     df=s.obs[keep].copy(); df.index.name="cell"
@@ -151,7 +132,6 @@ for tag, cfg in OBJS.items():
 pc=pd.concat(percell.values())
 pc.to_parquet(os.path.join(TAB,"clec_lam_percell.parquet"))
 
-# ---- cross-cancer TIM comparability correlation ----
 r_g=set(report["tim_comparability"]["RCC"]["tim_gene_means"])
 p_g=set(report["tim_comparability"]["prostate"]["tim_gene_means"])
 shared=sorted(r_g & p_g)

@@ -1,6 +1,4 @@
 #!/usr/bin/env Rscript
-# Phase 2 R toolchain install (run on LOGIN node; compute nodes have no internet).
-# Target R 4.4.2 (/usr/local/packages/r-4.4.2), Bioc 3.20. Personal lib ~/R_libs/4.4.
 lib <- path.expand("~/R_libs/4.4"); dir.create(lib, recursive=TRUE, showWarnings=FALSE)
 .libPaths(c(lib, .libPaths()))
 options(repos=c(CRAN="https://cloud.r-project.org"), Ncpus=max(1, parallel::detectCores()-2))

@@ -1,9 +1,4 @@
 #!/usr/bin/env python
-"""41_braun_icb.py — Phase 4b: Braun/CheckMate ICB. Primary = nivolumab-treated OS/PFS/ORR/benefit;
-exploratory = CM-025 nivo-vs-everolimus arm x module interaction. Control-contrast discipline.
-Modules scored on Braun normalized expression (AUCell single-sample). Adjust for IMDC, Braun Myeloid
-signature, Purity where available; report collinearity honestly. Run: envs/rcc_reinterp_venv/bin/python.
-"""
 import os, warnings
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, anndata as ad, decoupler as dc
@@ -21,7 +16,7 @@ MOD={"complement_C1Q":["C1QA","C1QB","C1QC"],"complement_C1Q_C3":["C1QA","C1QB",
      "Obradovic_TREM2":["TREM2","APOE","APOC1","C1QA","C1QB","C1QC","GPNMB","FOLR2","SPP1","CTSD","CD68"]}
 expr=pd.read_csv(os.path.join(B,"expression_normalized.tsv"),sep="\t",index_col=0)
 expr.index=[str(g).upper() for g in expr.index]
-X=expr.T  # samples(RNA_ID) x genes
+X=expr.T
 adT=ad.AnnData(X.values.astype(float),obs=pd.DataFrame(index=X.index),var=pd.DataFrame(index=X.columns))
 net=pd.concat([pd.DataFrame({"source":k,"target":[g for g in v if g in adT.var_names],"weight":1.0}) for k,v in MOD.items()])
 dc.mt.aucell(adT,net,tmin=2,verbose=False); SC=adT.obsm["score_aucell"]
@@ -55,7 +50,7 @@ for m in TEST:
     for ep,ev,tm in [("OS","OS_event","OS"),("PFS","PFS_event","PFS")]:
         for adj in (False,True):
             r=cox(nivo,ev,tm,m,adj); r.update(dict(module=m,endpoint=ep)); rows.append(r)
-# response logistic
+
 for m in TEST:
     for oc in ["responder","benefit"]:
         d=nivo.dropna(subset=[m,oc]).copy()
@@ -67,7 +62,6 @@ for m in TEST:
         except Exception as e: rows.append(dict(module=m,endpoint=oc,model="logit",HR_per_SD=np.nan,ci_low=np.nan,ci_high=np.nan,p=np.nan,n=len(d),events=int(d[oc].sum())))
 R=pd.DataFrame(rows); R.to_csv(os.path.join(TAB,"phase4_braun_nivo.csv"),index=False)
 
-# CM-025 nivo-vs-evero arm interaction (exploratory)
 cm=D[D.Cohort=="CM-025"].copy(); cm["arm_nivo"]=(cm.Arm=="NIVOLUMAB").astype(int)
 h=[]
 for m in ["complement_C1Q","CLEC_LAM8","RCC_skew_CORE"]:

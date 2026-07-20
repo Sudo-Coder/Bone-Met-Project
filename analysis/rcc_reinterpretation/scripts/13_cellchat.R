@@ -1,11 +1,4 @@
 #!/usr/bin/env Rscript
-# 13_cellchat.R — Phase 2: CellChat predicted signaling axes in the RCC tumor niche (and benign senders).
-# Input: outputs/tables/cellchat_input/<niche>/{expr.mtx,genes.txt,cells.txt,meta.csv} from 11_cellchat_prep.py
-# expr = log-normalized (genes x cells). Receivers of interest: TAM_CLEC_LAM, TAM_other, TIM.
-# Output: cellchat_tam_LR_<niche>.csv (ranked LR to TAM receivers), cellchat_centrality_<niche>.csv,
-#         cellchat_prespecified_axes_<niche>.csv, and the CellChat object .rds.
-# NOTE (claim ladder): all results are "predicted signaling axes." APOE->TREM2 is NOT in CellChatDB
-# (not a classic LR) -> covered by NicheNet (14) + LR expression (12), not here.
 suppressMessages({library(CellChat); library(Matrix)})
 lib <- path.expand("~/R_libs/4.4"); .libPaths(c(lib,.libPaths()))
 ROOT <- normalizePath(file.path(dirname(sub("--file=","",grep("--file=",commandArgs(),value=TRUE))),"..","..",".."))
@@ -25,7 +18,6 @@ run_niche <- function(niche){
   colnames(expr) <- readLines(file.path(d,"cells.txt"))
   meta <- read.csv(file.path(d,"meta.csv"), row.names=1)
   meta$cc_group <- factor(meta$cc_group)
-  # drop groups with <10 cells (CellChat needs populated groups)
   keep <- names(which(table(meta$cc_group) >= 10))
   cells <- rownames(meta)[meta$cc_group %in% keep]
   expr <- expr[,cells]; meta <- meta[cells,,drop=FALSE]; meta$cc_group <- droplevels(meta$cc_group)
@@ -46,10 +38,8 @@ run_niche <- function(niche){
   tam <- df[df$target %in% RECV, ]
   tam <- tam[order(-tam$prob), ]
   write.csv(tam, file.path(TAB,paste0("cellchat_tam_LR_",niche,".csv")), row.names=FALSE)
-  # pre-specified pathway axes to TAM receivers
   ax <- tam[tam$pathway_name %in% PRESPEC, ]
   write.csv(ax, file.path(TAB,paste0("cellchat_prespecified_axes_",niche,".csv")), row.names=FALSE)
-  # centrality (outgoing/incoming per group)
   ct <- cc@netP$centr
   cen <- do.call(rbind, lapply(names(ct), function(pw){
     z <- ct[[pw]]; data.frame(pathway=pw, group=names(z$outdeg), outdeg=z$outdeg, indeg=z$indeg)

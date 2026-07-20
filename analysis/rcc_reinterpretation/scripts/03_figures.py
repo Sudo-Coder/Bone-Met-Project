@@ -1,8 +1,4 @@
 #!/usr/bin/env python
-"""03_figures.py — Phase 1 figures + per-gene tumor-induction verification.
-Outputs (300 dpi) to outputs/figures/ and a gene-stats table to outputs/tables/.
-Run: envs/rcc_reinterp_venv/bin/python. Seed 0.
-"""
 import os, warnings, json
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, anndata as ad, scanpy as sc
@@ -21,7 +17,6 @@ res=pd.read_csv(os.path.join(TAB,"phase1_confirmatory_results.csv"))
 OBJS={"RCC":"kidney-cancer/Cleaned_Data/myeloid_FINAL_labels.h5ad",
       "prostate":"prostate-cancer/Cleaned_Data/myeloid_FINAL.h5ad"}
 
-# ---------- Fig 1: UMAP CORE score + condition ----------
 fig,axes=plt.subplots(2,2,figsize=(11,10))
 for i,(tag,p) in enumerate(OBJS.items()):
     a=ad.read_h5ad(os.path.join(ROOT,p)); um=a.obsm["X_umap"]
@@ -35,7 +30,6 @@ for i,(tag,p) in enumerate(OBJS.items()):
     for ax in (axes[0,i],axes[1,i]): ax.set_xticks([]); ax.set_yticks([])
 plt.tight_layout(); plt.savefig(os.path.join(FIG,"fig1_umap_core_score.png"),dpi=300); plt.close()
 
-# ---------- Fig 2: CORE gene detection heatmap (TAM/TIM x cancer) ----------
 rep=json.load(open(os.path.join(TAB,"phase1_scoring_report.json")))
 rows=[]
 for tag in OBJS:
@@ -51,7 +45,6 @@ for i in range(len(piv)):
 plt.colorbar(im,label="fraction expressing"); ax.set_title("CORE gene detection")
 plt.tight_layout(); plt.savefig(os.path.join(FIG,"fig2_core_detection.png"),dpi=300); plt.close()
 
-# ---------- Fig 3: per-patient CORE score boxplots by condition x cancer ----------
 pb=pd.read_csv(os.path.join(TAB,"pseudobulk_all_myeloid.csv")); pb=pb[pb.ok]
 fig,axes=plt.subplots(1,2,figsize=(11,4.5),sharey=True)
 for i,tag in enumerate(OBJS):
@@ -63,7 +56,6 @@ for i,tag in enumerate(OBJS):
     axes[i].set_title(f"{tag} — all-myeloid CORE score / patient"); axes[i].set_ylabel("mean AUCell CORE")
 plt.tight_layout(); plt.savefig(os.path.join(FIG,"fig3_patient_boxplots.png"),dpi=300); plt.close()
 
-# ---------- Fig 4: forest plot of confirmatory + robustness estimates ----------
 show=res[res.estimate.notna() & res.ci_low.notna() & (res.test.str.startswith(("C1","C2","C3b")))].copy()
 show=show[~show.test.str.contains("binomial")]
 fig,ax=plt.subplots(figsize=(9,0.5*len(show)+1))
@@ -73,7 +65,6 @@ ax.axvline(0,color="r",ls="--",lw=1); ax.set_yticks(y); ax.set_yticklabels(show.
 ax.set_xlabel("estimate (score units / arcsin) with 95% CI"); ax.set_title("Phase 1 confirmatory + robustness")
 plt.tight_layout(); plt.savefig(os.path.join(FIG,"fig4_forest.png"),dpi=300); plt.close()
 
-# ---------- per-gene tumor-induction (patient-level Δ tumor-benign) per cancer ----------
 gene_rows=[]
 for tag,p in OBJS.items():
     a=ad.read_h5ad(os.path.join(ROOT,p))
@@ -84,7 +75,7 @@ for tag,p in OBJS.items():
         if g not in s.var_names: gene_rows.append(dict(cancer=tag,gene=g,delta=np.nan)); continue
         x=s[:,g].X; x=x.toarray().ravel() if sp.issparse(x) else np.asarray(x).ravel()
         df=pd.DataFrame({"x":x,"cond":obs["condition"].values,"pid":obs["patient_id"].values})
-        # patient-mean per condition, then tumor-benign
+
         pm=df.groupby(["pid","cond"],observed=True)["x"].mean().reset_index()
         t=pm[pm.cond=="Tumor"]["x"]; b=pm[pm.cond=="Benign"]["x"]
         delta=float(t.mean()-b.mean()) if len(t) and len(b) else np.nan

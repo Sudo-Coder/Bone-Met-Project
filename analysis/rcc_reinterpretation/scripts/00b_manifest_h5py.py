@@ -9,7 +9,7 @@ paths = [
 CHECK=["ATF3","C1QA","C1QB","C1QC","APOE","APOC1","TREM2","GPNMB","MERTK","FOLR2","SELENOP","ABCA1","C3","SERPING1","CA9","PAX8","CD68","CD163"]
 
 def cat_summary(grp, key):
-    # AnnData categorical: group with 'categories' + 'codes'
+
     try:
         node = grp[key]
         if isinstance(node, h5py.Group) and 'categories' in node and 'codes' in node:
@@ -40,7 +40,7 @@ for p in paths:
         f = h5py.File(p,"r")
     except Exception as e:
         print("  ERR", e); continue
-    # var names
+
     var = f['var']
     idxkey = var.attrs.get('_index', b'_index')
     if isinstance(idxkey,bytes): idxkey=idxkey.decode()
@@ -56,7 +56,7 @@ for p in paths:
         if k==oidx: continue
         s = cat_summary(obs,k)
         if s and 'uniq' in s and not s.startswith('(') is False:
-            # only print small-cardinality
+
             if 'categorical)' not in s and s.count('=')>0:
                 print(f"    [{k}] {s}")
     vset=set(vn)

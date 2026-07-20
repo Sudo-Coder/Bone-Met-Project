@@ -1,13 +1,4 @@
 #!/usr/bin/env python
-"""40_tcga_kirc.py — Phase 4a: TCGA-KIRC survival, continuous Cox per SD, control-contrast discipline.
-
-Modules scored on bulk (AUCell single-sample enrichment, rank-based; GSVA available as alt) per tumor
-sample. Continuous Cox (HR/SD + 95% CI) for OS/PFI/DFI. Control contrast: does the complement/CLEC_LAM
-module add beyond generic macrophage (panTAM) + the Obradovic-style TREM2/APOE/C1Q signature (collinearity
-EXPECTED — reported, novelty not staked on survival independence). Stage/grade/purity NOT in the staged
-TCGA file -> parsimonious models; unavailable covariates listed.
-Run: envs/rcc_reinterp_venv/bin/python. Seed 0.
-"""
 import os, warnings, gzip
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, anndata as ad, decoupler as dc
@@ -23,16 +14,16 @@ MOD={"complement_C1Q":["C1QA","C1QB","C1QC"],"complement_C1Q_C3":["C1QA","C1QB",
      "panTAM":["CD68","CD163","MRC1","CSF1R","LYZ","AIF1","FCGR3A"],
      "Obradovic_TREM2":["TREM2","APOE","APOC1","C1QA","C1QB","C1QC","GPNMB","FOLR2","SPP1","CTSD","CD68"],
      "total_immune":["PTPRC","CD3D","CD8A","CD4","CD19","NKG7","CD68"]}
-# --- load expression (genes x samples) ---
+
 expr=pd.read_csv(EXP,sep="\t",index_col=0)
 expr.index=[str(g).upper() for g in expr.index]
-samples=[c for c in expr.columns if c[-2:] in ("01","05")]  # primary tumor
-X=expr[samples].T   # samples x genes
+samples=[c for c in expr.columns if c[-2:] in ("01","05")]
+X=expr[samples].T
 adT=ad.AnnData(X.values.astype(float),obs=pd.DataFrame(index=X.index),var=pd.DataFrame(index=X.columns))
 net=pd.concat([pd.DataFrame({"source":k,"target":[g for g in v if g in adT.var_names],"weight":1.0}) for k,v in MOD.items()])
 dc.mt.aucell(adT,net,tmin=2,verbose=False); SC=adT.obsm["score_aucell"]
 sc=pd.DataFrame({k:SC[k].values for k in MOD if k in SC.columns},index=X.index)
-# --- survival ---
+
 sv=pd.read_csv(SURV,sep="\t")
 sv["bcr"]=sv["sample"].str[:15]
 sc["bcr"]=[s[:15] for s in sc.index]
@@ -49,16 +40,16 @@ for ep,(ev,tm) in endpoints.items():
         d=d0.dropna(subset=[m]).copy();
         if len(d)<30 or d[ev].sum()<10: rows.append(dict(endpoint=ep,module=m,model="unadj",HR_per_SD=np.nan,ci_low=np.nan,ci_high=np.nan,p=np.nan,n=len(d),events=int(d[ev].sum()))); continue
         d["z"]=zc(d[m])
-        # unadjusted
+
         try:
             cph=CoxPHFitter().fit(d[["z",tm,ev]].rename(columns={tm:"T",ev:"E"}),"T","E")
             r=cph.summary.loc["z"]; rows.append(dict(endpoint=ep,module=m,model="unadj",HR_per_SD=np.exp(r["coef"]),ci_low=np.exp(r["coef lower 95%"]),ci_high=np.exp(r["coef upper 95%"]),p=r["p"],n=len(d),events=int(d[ev].sum())))
         except Exception as e: rows.append(dict(endpoint=ep,module=m,model="unadj",HR_per_SD=np.nan,ci_low=np.nan,ci_high=np.nan,p=np.nan,n=len(d),events=int(d[ev].sum())))
-        # adjusted for panTAM + Obradovic + total_immune (control contrast)
+
         try:
             d["z_pan"]=zc(d["panTAM"]); d["z_obr"]=zc(d["Obradovic_TREM2"]); d["z_imm"]=zc(d["total_immune"])
             cols=["z","z_pan","z_obr","z_imm",tm,ev]
-            if m in ("panTAM","Obradovic_TREM2"): cols=["z","z_imm",tm,ev]  # avoid self-adjust
+            if m in ("panTAM","Obradovic_TREM2"): cols=["z","z_imm",tm,ev]
             cph=CoxPHFitter().fit(d[cols].rename(columns={tm:"T",ev:"E"}),"T","E")
             r=cph.summary.loc["z"]; rows.append(dict(endpoint=ep,module=m,model="adj(panTAM+Obradovic+immune)",HR_per_SD=np.exp(r["coef"]),ci_low=np.exp(r["coef lower 95%"]),ci_high=np.exp(r["coef upper 95%"]),p=r["p"],n=len(d),events=int(d[ev].sum())))
         except Exception as e: rows.append(dict(endpoint=ep,module=m,model="adj",HR_per_SD=np.nan,ci_low=np.nan,ci_high=np.nan,p=np.nan,n=len(d),events=int(d[ev].sum()),note=str(e)[:40]))

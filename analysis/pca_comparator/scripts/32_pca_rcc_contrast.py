@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-"""32_pca_rcc_contrast.py — assemble the PCa-vs-RCC module contrast (composition + immune) verdict table."""
 import os, warnings, numpy as np, pandas as pd
 warnings.filterwarnings("ignore")
 ROOT=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..",".."))

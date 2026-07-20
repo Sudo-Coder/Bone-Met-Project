@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-"""42_verdict_table.py — combined Phase 3/4 per-module verdict table (the decision deliverable)."""
 import os, warnings, numpy as np, pandas as pd
 warnings.filterwarnings("ignore")
 ROOT=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..",".."))
@@ -32,9 +31,9 @@ for m in MODS:
     r["Braun_nivo_ORR"]=sig(braun,endpoint="responder",module=m,model="logit(OR/SD)")
     rows.append(r)
 V=pd.DataFrame(rows)
-# beats-controls + verdict (focus modules)
+
 def beats(m):
-    # complement head-to-head vs panTAM; and whether panTAM/SPP1/inflammatory null where module sig
+
     if m=="complement_C1Q":
         hh=h2h.set_index("outcome")
         wins=[]

@@ -1,10 +1,4 @@
 #!/usr/bin/env python
-"""05_complement_source.py — GATING ITEM: which sender class produces complement (C1QA/B/C, C3)?
-C1q is canonically macrophage-derived; test whether it is TAM/CLEC_LAM-derived (autocrine/paracrine) vs
-tumor-cell-derived. Patient-level mean log-norm expression + fraction-expressing per compartment, in the
-TUMOR niche (with-stromal labeled object). Sets the mechanism wording (direction of the arrow).
-Run: envs/rcc_reinterp_venv/bin/python. Seed 0.
-"""
 import os, warnings
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, h5py, scipy.sparse as sp
@@ -42,7 +36,7 @@ for g in GENES:
     for cl in CLASSES:
         m=(lab["cc_group"].values==cl)&tumor
         if m.sum()==0: rows.append(dict(gene=g,compartment=cl,mean_lognorm=np.nan,frac_expr=np.nan,n=0)); continue
-        # patient-level mean then average (patient-level estimand)
+
         df=pd.DataFrame({"x":v[m],"pid":lab["pid"].values[m]})
         pm=df.groupby("pid")["x"].mean()
         rows.append(dict(gene=g,compartment=cl,mean_lognorm=float(pm.mean()),
@@ -54,7 +48,7 @@ print(piv.round(2).to_string())
 print("\n=== fraction expressing ===")
 pf0=src.pivot_table(index="compartment",columns="gene",values="frac_expr").reindex(CLASSES); pf=pf0[[c for c in ["C1QA","C1QB","C1QC","C3"] if c in pf0.columns]]
 print(pf.round(2).to_string())
-# verdict
+
 for g in ["C1QA","C1QB","C1QC","C3"]:
     sub=src[(src.gene==g)&src.compartment.isin(CLASSES)].dropna(subset=["mean_lognorm"])
     if len(sub):

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-"""43_phase34_figures.py — Phase 3/4 summary figures (300 dpi)."""
 import os, warnings, numpy as np, pandas as pd
 warnings.filterwarnings("ignore")
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
@@ -8,7 +7,6 @@ FIG=os.path.join(ROOT,"analysis/rcc_reinterpretation/outputs/figures"); TAB=os.p
 tcga=pd.read_csv(os.path.join(TAB,"phase4_tcga_kirc_cox.csv")); p3=pd.read_csv(os.path.join(TAB,"phase3_adjusted_associations.csv"))
 MODS=["complement_C1Q","RCC_skew_CORE","CLEC_LAM8","APOE_TREM2","MERTK_GPNMB","panTAM"]
 
-# Fig P34-1: TCGA-KIRC OS adjusted HR/SD forest
 d=tcga[(tcga.endpoint=="OS")].copy()
 d=d[d.model.str.startswith("adj") | ((d.module.isin(["panTAM"]))&(d.model=="unadj"))]
 d=d[d.module.isin(MODS)].drop_duplicates("module")
@@ -19,7 +17,6 @@ ax.axvline(1,color="r",ls="--",lw=1); ax.set_yticks(y); ax.set_yticklabels([f"{m
 ax.set_xlabel("TCGA-KIRC OS  HR per SD (adjusted: panTAM+Obradovic+immune)"); ax.set_title("Phase 4 — TCGA-KIRC OS (continuous Cox, adjusted)",fontsize=10)
 plt.tight_layout(); plt.savefig(os.path.join(FIG,"figP34_1_tcga_os_forest.png"),dpi=300); plt.close()
 
-# Fig P34-2: Phase-3 immune-evasion contrast (complement vs panTAM etc across outcomes)
 outs=["CD8_exhaustion","cytotoxicity","Treg_fraction","MHC_II_APC"]
 sub=p3[p3.module.isin(["complement_C1Q","panTAM","SPP1_TAM","MERTK_GPNMB"])&p3.outcome.isin(outs)]
 piv=sub.pivot_table(index="outcome",columns="module",values="coef").reindex(outs)

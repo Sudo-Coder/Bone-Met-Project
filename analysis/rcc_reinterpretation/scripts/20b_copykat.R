@@ -1,8 +1,4 @@
 #!/usr/bin/env Rscript
-# 20b_copykat.R — Phase 1.5: CopyKAT malignant-sender validation (RCC full-niche subset).
-# Calls aneuploid (malignant) vs diploid per cell using T/NK as known-normal reference.
-# Expect: Tumor-labeled cells aneuploid; MSC/Pericyte/Endothelial/Myeloid/T diploid -> justifies
-# the CellChat malignant sender = Tumor, non-malignant stromal senders.
 suppressMessages({library(copykat); library(Matrix)})
 lib <- path.expand("~/R_libs/4.4"); .libPaths(c(lib,.libPaths()))
 ROOT <- getwd(); TAB <- file.path(ROOT,"analysis/rcc_reinterpretation/outputs/tables")

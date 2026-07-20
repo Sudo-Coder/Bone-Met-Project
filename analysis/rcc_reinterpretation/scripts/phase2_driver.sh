@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# phase2_driver.sh — fully-detached Phase 2 pipeline. Survives VS Code/SSH close (setsid+nohup).
-# Waits for CellChat/nichenetr/copykat to finish installing, then runs CopyKAT -> CellChat -> NicheNet
-# -> axis-support synthesis. Writes a DONE/FAILED marker. Re-runnable (skips completed steps by output).
 set -u
 cd /autofs/projects-t3/hussain/scProj
 export MAMBA_ROOT_PREFIX=/autofs/projects-t3/hussain/scProj/.mamba TMPDIR=/autofs/scratch/arifai/tmp
@@ -31,7 +28,6 @@ mark "== 14 NicheNet ==" >> $LOG/phase2_driver.log
 mark "== 15 axis support ==" >> $LOG/phase2_driver.log
 $VENV analysis/rcc_reinterpretation/scripts/15_axis_support.py >> $LOG/phase2_driver.log 2>&1
 
-# status marker
 S=OK
 for f in cellchat_tam_LR_tumor.csv nichenet_prespecified_ranks.csv axis_support_table.csv; do
   [ -f $TAB/$f ] || S="PARTIAL(missing $f)"

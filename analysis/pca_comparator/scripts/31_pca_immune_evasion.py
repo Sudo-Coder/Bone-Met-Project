@@ -1,9 +1,4 @@
 #!/usr/bin/env python
-"""31_pca_immune_evasion.py — PCa mirror of Phase 3 immune-evasion (prostate full-niche).
-Per prostate sample: myeloid module scores vs CD8 exhaustion/cytotoxicity, Treg fraction, MHC-I/APM,
-MHC-II/APC; adjusted for TAM/CD8/malignant fraction + condition. Contrast-primary (complement vs panTAM
-head-to-head), mirroring RCC 30_immune_evasion. Run: envs/rcc_reinterp_venv/bin/python. Seed 0.
-"""
 import os, warnings
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, anndata as ad, decoupler as dc

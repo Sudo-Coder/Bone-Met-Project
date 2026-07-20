@@ -1,17 +1,4 @@
 #!/usr/bin/env python
-"""00c_stage_braun_icb.py — Phase 0.5: stage the Braun 2020 (CheckMate-009/010/025) ccRCC ICB cohort.
-
-Source (downloaded on IGS login node, internet OK):
-  Braun DA et al., Nat Med 2020; 26:909-918. DOI 10.1038/s41591-020-0839-y
-  Supplementary Table file MOESM2:
-  https://static-content.springer.com/esm/art%3A10.1038%2Fs41591-020-0839-y/MediaObjects/41591_2020_839_MOESM2_ESM.xlsx
-  raw/ md5: aea91c06c171f090100eb3c0141e3428 (see raw/CHECKSUMS.md5). RAW LEFT UNTOUCHED.
-
-Parses MOESM2 sheets into processed/ TSVs. Verifies all 8 CLEC_LAM CORE genes are present.
-If the raw XLSX is absent, prints the required drop path and exits 2 (does NOT fabricate).
-
-Run: envs/celloracle_env/bin/python (has openpyxl); no internet needed once raw/ is staged.
-"""
 import os, sys, hashlib
 import pandas as pd
 
@@ -36,7 +23,6 @@ print(f"raw md5: {md5}")
 xl = pd.ExcelFile(RAW, engine="openpyxl")
 print("sheets:", xl.sheet_names)
 
-# --- S1: clinical + immune (row 1 is a title; real header is row 2 -> skiprows=1) ---
 s1 = xl.parse("S1_Clinical_and_Immune_Data", skiprows=1)
 s1 = s1.rename(columns={s1.columns[0]: "SUBJID"})
 s1.to_csv(os.path.join(OUT, "clinical.tsv"), sep="\t", index=False)
@@ -52,7 +38,6 @@ surv_cols = ["SUBJID","OS","OS_CNSR","PFS","PFS_CNSR","irPFS","irPFS_CNSR"]
 s1[[c for c in surv_cols if c in s1.columns]].to_csv(
     os.path.join(OUT, "survival.tsv"), sep="\t", index=False)
 
-# adjustment covariates that Phase 4 will use (kept as an explicit convenience table)
 covar_cols = ["SUBJID","Cohort","Arm","Age","Sex","MSKCC","IMDC","Sarc_or_Rhab",
               "Received_Prior_Therapy","Number_of_Prior_Therapies","SampleType",
               "Tumor_Sample_Primary_or_Metastasis","Site_of_Metastasis",
@@ -61,17 +46,14 @@ covar_cols = ["SUBJID","Cohort","Arm","Age","Sex","MSKCC","IMDC","Sarc_or_Rhab",
 s1[[c for c in covar_cols if c in s1.columns]].to_csv(
     os.path.join(OUT, "covariates.tsv"), sep="\t", index=False)
 
-# --- S4A: normalized RNA expression (gene x sample). Row1 title -> skiprows=1 ---
 expr = xl.parse("S4A_RNA_Expression", skiprows=1)
 expr = expr.rename(columns={expr.columns[0]: "gene_name"}).set_index("gene_name")
 expr.to_csv(os.path.join(OUT, "expression_normalized.tsv"), sep="\t")
 
-# --- S4C: CIBERSORTx immune deconvolution ---
 deconv = xl.parse("S4C_CIBERSORTx", skiprows=1)
 deconv = deconv.rename(columns={deconv.columns[0]: "cell_type"}).set_index("cell_type")
 deconv.to_csv(os.path.join(OUT, "immune_deconv.tsv"), sep="\t")
 
-# --- sample_manifest: link expression columns (RNA_ID) <-> SUBJID/clinical ---
 expr_samples = list(expr.columns)
 rna_map = s1.set_index("RNA_ID")[["SUBJID","Cohort","Arm"]] if "RNA_ID" in s1.columns else None
 rows = []
@@ -85,7 +67,6 @@ for e in expr_samples:
 man = pd.DataFrame(rows)
 man.to_csv(os.path.join(OUT, "sample_manifest.tsv"), sep="\t", index=False)
 
-# --- verification report ---
 present = [g for g in CORE if g in expr.index]
 absent  = [g for g in CORE if g not in expr.index]
 n_link = int(man["SUBJID"].notna().sum())

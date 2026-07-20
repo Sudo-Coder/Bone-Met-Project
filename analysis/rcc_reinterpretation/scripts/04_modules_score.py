@@ -1,15 +1,4 @@
 #!/usr/bin/env python
-"""04_modules_score.py — Pre-checks 1&2 + module scores reused by Phase 3/4.
-
-Scores (AUCell, rank-based 0..1; NOT z-scored, NOT raw log-norm mean) on each object's raw (full genes):
-  CLEC_LAM8, RCC_skew_CORE, complement_C1Q, complement_C1Q_C3, APOE_TREM2, MERTK_GPNMB_support,
-  and Phase-3 negative controls: SPP1_TAM, inflammatory_mono, panTAM.
-For each module: patient-level pseudobulk (all-myeloid PRIMARY, TAM+TIM secondary), cross-cancer
-interaction `score ~ cancer_type*condition + (1|patient_id)` with estimate+95%CI+FDR, AND the same in
-SD units (SD = SD of the patient-level pseudobulk all-myeloid score = the estimand).
-Writes per-cell module scores (for Phase 3/4) + an interaction table.
-Run: envs/rcc_reinterp_venv/bin/python. Seed 0.
-"""
 import os, warnings, json
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, anndata as ad, decoupler as dc
@@ -74,7 +63,7 @@ def interaction(pb,m):
     if len(d)<6 or d[m].nunique()<3:
         return dict(module=m,unit="all_myeloid" if pb is pb_all else "TAM+TIM",method="skip",estimate=np.nan,ci_low=np.nan,ci_high=np.nan,p=np.nan,score_SD=np.nan,est_SD=np.nan,ci_low_SD=np.nan,ci_high_SD=np.nan)
     d["condition"]=pd.Categorical(d["condition"],["Benign","Tumor"]); d["cancer_type"]=pd.Categorical(d["cancer_type"],["prostate","RCC"])
-    sd=float(d[m].std())  # SD of the pseudobulk score (estimand) on this unit
+    sd=float(d[m].std())
     try:
         mm=smf.mixedlm(form.format(m=m),d,groups=d["patient_id"]).fit(reml=False,method="lbfgs")
         est,se,p=mm.params[coef],mm.bse[coef],mm.pvalues[coef]; meth="mixedlm"
@@ -89,13 +78,12 @@ rows=[]
 for m in MODULES:
     rows.append(interaction(pb_all,m)); rows.append(interaction(pb_tt,m))
 res=pd.DataFrame(rows)
-# FDR across the primary (all_myeloid) confirmatory modules
+
 prim=res[res.unit=="all_myeloid"].copy()
 prim["fdr"]=multipletests(prim["p"],method="fdr_bh")[1]
 res=res.merge(prim[["module","unit","fdr"]],on=["module","unit"],how="left")
 res.to_csv(os.path.join(TAB,"module_interactions.csv"),index=False)
 
-# report
 pd.set_option("display.width",220,"display.max_colwidth",22)
 print("=== SCORE SCALE ===\nAUCell rank-based enrichment (0..1); NOT z-scored, NOT raw log-norm mean.")
 print("Pseudobulk all-myeloid score SD (the estimand) per module:")

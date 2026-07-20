@@ -1,16 +1,4 @@
 #!/usr/bin/env python
-"""30_immune_evasion.py — Phase 3: immune-evasion association, patient-level, adjusted, CONTRAST-primary.
-
-RCC full-niche (integrated.h5ad). Per sample (patient x condition):
-  myeloid module scores (complement_C1Q, CLEC_LAM8, RCC_skew_CORE, APOE_TREM2, MERTK_GPNMB, SPP1_TAM,
-    inflammatory_mono, panTAM) = mean over myeloid cells;
-  outcomes: CD8_exhaustion (over CTL/CD8), cytotoxicity (separate), Treg_fraction, MHC-I/APM (tumor),
-    MHC-II/APC (myeloid+B);
-  covariates: TAM_fraction, CD8_fraction, malignant_fraction, condition.
-PRIMARY = the CONTRAST: does the complement module beat negative controls (panTAM/TAM_fraction, SPP1_TAM,
-  inflammatory_mono, MERTK_GPNMB) in adjusted models? Reported per outcome with coef+95%CI+p (+BH-FDR).
-Run: envs/rcc_reinterp_venv/bin/python. Seed 0.
-"""
 import os, warnings, json
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, anndata as ad, decoupler as dc
@@ -68,7 +56,6 @@ def agg(sub):
 S=df.groupby(["Sample","pid","cond"],observed=True).apply(agg).reset_index()
 S.to_csv(os.path.join(TAB,"phase3_sample_table.csv"),index=False)
 
-# --- adjusted association models: outcome ~ module + TAM_frac + CD8_frac + malignant_frac + C(cond) ---
 CTRLS=["panTAM","SPP1_TAM","inflammatory_mono","MERTK_GPNMB","TAM_fraction"]
 TESTMOD=["complement_C1Q","complement_C1Q_C3","CLEC_LAM8","RCC_skew_CORE","APOE_TREM2","MERTK_GPNMB"]+["panTAM","SPP1_TAM","inflammatory_mono"]
 OUTCOMES=["CD8_exhaustion","cytotoxicity","Treg_fraction","MHC_I_APM","MHC_II_APC"]
@@ -94,14 +81,13 @@ for oc in OUTCOMES:
         except Exception as e:
             rows.append(dict(outcome=oc,module=m,coef=np.nan,ci_low=np.nan,ci_high=np.nan,p=np.nan,n=len(d),note=str(e)[:30]))
 R=pd.DataFrame(rows)
-# FDR within each outcome across modules
+
 R["fdr"]=np.nan
 for oc in OUTCOMES:
     mask=(R.outcome==oc)&R.p.notna()
     if mask.sum(): R.loc[mask,"fdr"]=multipletests(R.loc[mask,"p"],method="fdr_bh")[1]
 R.to_csv(os.path.join(TAB,"phase3_adjusted_associations.csv"),index=False)
 
-# head-to-head: complement vs panTAM in same model
 h2h=[]
 for oc in OUTCOMES:
     d=S.dropna(subset=[oc,"complement_C1Q","panTAM","TAM_fraction","CD8_fraction","malignant_fraction"]).copy()

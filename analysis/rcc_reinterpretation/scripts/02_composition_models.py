@@ -1,25 +1,4 @@
 #!/usr/bin/env python
-"""02_composition_models.py — Phase 1 step 2: tumor-enrichment + cross-cancer interaction.
-
-STRUCTURAL DATA FACT (from the pseudobulk): RCC BENIGN marrow has ~no TAM/TIM cells
-(median 1.5 TAM+TIM per benign sample; 0 pass a >=10 gate). TAMs are essentially tumor-restricted.
-=> A TAM+TIM-gated tumor-vs-benign contrast is undefined on the RCC benign side. The PRIMARY unit is
-therefore the mean CORE (AUCell) score over ALL MYELOID cells per patient/sample (benign myeloid IS
-well-populated), which captures BOTH the compositional emergence of TAMs and the per-cell state.
-The TAM+TIM-restricted score is reported SECONDARY (tumor-side descriptive; benign lacks the cells).
-
-CLEC_LAM-high is (re)defined here purely by CORE score (per-object top-15% AUCell over ALL myeloid;
-top10/20 as sensitivity) — not gated to a prior TAM/TIM label, avoiding circularity.
-
-Confirmatory set (estimate + 95% CI + p + BH-FDR):
-  C1  RCC tumor-enrichment: all-myeloid CORE score Tumor vs Benign (RCC), mixed model + patient RE.
-  C2  Cross-cancer interaction cancer_type:condition[Tumor] on all-myeloid CORE score (own benign) — HEADLINE.
-  C3  Interaction on CLEC_LAM-high fraction among all myeloid (binomial GLM + arcsin LMM).
-Robustness: 3 benign references (RCC-proc / prostate-proc / per-donor avg) via common-norm joint scoring;
-  integration arm3 = dataset-regressed; leave-one-patient-out on the headline.
-
-Run: envs/rcc_reinterp_venv/bin/python. Seed 0.
-"""
 import os, json, warnings
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, anndata as ad, decoupler as dc
@@ -34,21 +13,18 @@ MIN_CELLS=20
 
 pc=pd.read_parquet(os.path.join(TAB,"clec_lam_percell.parquet"))
 
-# ---- redefine CLEC_LAM-high by CORE score, per object, over ALL myeloid ----
 for ct,sub in pc.groupby("cancer_type",observed=True):
     for pct in (10,15,20):
         cut=np.quantile(sub["CLEC_LAM_aucell"], 1-pct/100)
         pc.loc[sub.index, f"hi{pct}"]=(sub["CLEC_LAM_aucell"]>=cut)
 for pct in (10,15,20): pc[f"hi{pct}"]=pc[f"hi{pct}"].astype(bool)
 
-# ---- structural finding table: TAM+TIM availability by cancer x condition ----
 tt=pc[pc.compartment.isin(["TAM","TIM"])]
 avail=(tt.groupby(["cancer_type","condition","Sample"],observed=True).size()
          .groupby(level=[0,1]).agg(n_samples="size", n_ge10=lambda x:(x>=10).sum(),
                                    median_cells="median")).reset_index()
 avail.to_csv(os.path.join(TAB,"tamtim_availability.csv"),index=False)
 
-# ---- pseudobulk over ALL myeloid (primary) and TAM+TIM (secondary) ----
 def pseudobulk(df):
     g=df.groupby(["Sample","cancer_type","dataset","patient_id","condition"],observed=True)
     return g.agg(score=("CLEC_LAM_aucell","mean"), score_add=("CLEC_LAM_addmodule","mean"),
@@ -73,7 +49,6 @@ def ols_coef(df,formula,coef,cluster=None):
 form="score ~ C(cancer_type, Treatment('prostate'))*C(condition, Treatment('Benign'))"
 coef="C(cancer_type, Treatment('prostate'))[T.RCC]:C(condition, Treatment('Benign'))[T.Tumor]"
 
-# ---- C1: RCC tumor-enrichment (all myeloid) ----
 rcc=pb[(pb.cancer_type=="RCC")&pb.ok].copy()
 rcc["condition"]=pd.Categorical(rcc["condition"],["Benign","Distal","Involved","Tumor"])
 cf="score ~ C(condition, Treatment('Benign'))"; tgt="C(condition, Treatment('Benign'))[T.Tumor]"
@@ -83,7 +58,6 @@ tm=rcc.loc[rcc.condition=="Tumor","score"]; bn=rcc.loc[rcc.condition=="Benign","
 add("C1_RCC_tumor_vs_benign_allmyeloid","tumor-enriched (patient-level)",e,l,h,p,
     f"n_tumor={len(tm)} n_benign={len(bn)} tumor_mean={tm.mean():.4f} benign_mean={bn.mean():.4f}")
 
-# ---- C2: cross-cancer interaction (own benign, all myeloid) HEADLINE ----
 b=pb[pb.condition.isin(["Tumor","Benign"])&pb.ok].copy()
 b["condition"]=pd.Categorical(b["condition"],["Benign","Tumor"])
 b["cancer_type"]=pd.Categorical(b["cancer_type"],["prostate","RCC"])
@@ -93,7 +67,6 @@ add("C2_interaction_ownBenign_allmyeloid","RCC-skewed (interaction, HEADLINE)",e
 e2,l2,h2,p2=ols_coef(b,form,coef,cluster="patient_id")
 add("C2b_interaction_ownBenign_OLScluster","RCC-skewed (sensitivity)",e2,l2,h2,p2)
 
-# leave-one-patient-out
 loo=[]
 for pid in b.patient_id.unique():
     try:
@@ -101,7 +74,6 @@ for pid in b.patient_id.unique():
     except Exception: pass
 loo=pd.DataFrame(loo,columns=["dropped_patient","interaction_est","p"]); loo.to_csv(os.path.join(TAB,"C2_leave_one_out.csv"),index=False)
 
-# ---- C3: CLEC_LAM-high fraction interaction (all myeloid) ----
 fr=b.copy(); fr["succ"]=fr["n_hi15"].astype(int); fr["fail"]=(fr["n_cells"]-fr["n_hi15"]).astype(int)
 fr["frac"]=fr["n_hi15"]/fr["n_cells"]; fr["asin"]=np.arcsin(np.sqrt(fr["frac"].clip(0,1)))
 try:
@@ -115,13 +87,10 @@ except Exception as ex:
 ea,la,ha,pa=ols_coef(fr,"asin ~ C(cancer_type, Treatment('prostate'))*C(condition, Treatment('Benign'))",coef,cluster="patient_id")
 add("C3b_fraction_interaction_arcsinLMM","RCC-skewed fraction (arcsin sensitivity)",ea,la,ha,pa)
 
-# ---- integration-sensitivity: joint cross-cancer scoring ----
-# MAIN arm = scVI-normalized (model-based, batch-aware, full CLEC_LAM8 incl MERTK).
-# SUPPLEMENTAL/conservative arm = shared RAW log-norm common space.
 import scipy.sparse as sp
 def joint_scores(method):
     RCC="kidney-cancer/Cleaned_Data/myeloid_FINAL_labels.h5ad"
-    PRO_scvi="prostate-cancer/Cleaned_Data/myeloid_integrated_final_label.h5ad"  # full-gene scVI-normalized
+    PRO_scvi="prostate-cancer/Cleaned_Data/myeloid_integrated_final_label.h5ad"
     PRO_raw ="prostate-cancer/Cleaned_Data/myeloid_FINAL.h5ad"
     pairs=[("RCC",RCC),("prostate", PRO_scvi if method=="scvi" else PRO_raw)]
     ads=[]
@@ -151,15 +120,13 @@ def joint_interaction(pbj):
     try: return mixedlm_coef(bj,form,"patient_id",coef)
     except Exception: return ols_coef(bj,form,coef,cluster="patient_id")
 
-# MAIN integration arm — scVI-normalized
 sj_scvi,core_scvi=joint_scores("scvi"); pbj=joint_pseudobulk(sj_scvi)
 pbj.to_csv(os.path.join(TAB,"pseudobulk_joint_scVInorm.csv"),index=False)
 e,l,h,p=joint_interaction(pbj); add("C2_interaction_scVInorm_ownBenign","RCC-skewed (integration arm: scVI-normalized, MAIN)",e,l,h,p,f"CORE={len(core_scvi)}/8")
-# SUPPLEMENTAL conservative arm — raw common-space
+
 sj_raw,core_raw=joint_scores("raw"); pbj_raw=joint_pseudobulk(sj_raw)
 er,lr,hr,pr=joint_interaction(pbj_raw); add("C2_interaction_rawCommon_ownBenign","RCC-skewed (conservative common-space supplemental)",er,lr,hr,pr,f"CORE={len(core_raw)}/8")
 
-# 3 BENIGN REFERENCES (on MAIN scVI-normalized arm): vary ONLY the RCC benign baseline, prostate arm fixed.
 def interaction_rcc_benign_variant(pbj, rcc_benign_df):
     pros=pbj[(pbj.cancer_type=="prostate")&pbj.condition.isin(["Tumor","Benign"])][["patient_id","cancer_type","condition","score"]]
     rcc_t=pbj[(pbj.cancer_type=="RCC")&(pbj.condition=="Tumor")][["patient_id","cancer_type","condition","score"]]
@@ -174,31 +141,24 @@ for nm,br in [("RCCbenign",bR),("PRObenign_forRCCarm",bP),("AVGbenign",bA)]:
     if len(br)==0: add(f"C2_benignRef_{nm}","RCC-skewed (benign-ref robustness)",np.nan,np.nan,np.nan,np.nan,"no benign rows pass gate"); continue
     e,l,h,p,n=interaction_rcc_benign_variant(pbj,br); add(f"C2_benignRef_{nm}","RCC-skewed (benign-ref robustness, scVI)",e,l,h,p,f"n_RCC_units={n}")
 
-# ---- integration arm3: dataset-regressed pseudobulk ----
 reg=b.copy()
 dummies=pd.get_dummies(reg["dataset"],drop_first=True).astype(float)
 reg["score"]=sm.OLS(reg["score"],sm.add_constant(dummies)).fit().resid
 e,l,h,p=ols_coef(reg,form,coef,cluster="patient_id"); add("C2_interaction_datasetRegressed","RCC-skewed (integration arm3: dataset-regressed)",e,l,h,p)
 
-# ================= COMPOSITION-vs-STATE DECOMPOSITION + residual test =================
-# Does the RCC-skew in all-myeloid CORE reflect (i) COMPOSITION (more CLEC_LAM/TAM+TIM cells) or
-# (ii) STATE (higher CORE per TAM+TIM cell)? Guard: the compositional emergence of TAMs IS the
-# canalization phenotype -> we report the fraction-adjusted (residual) interaction but do NOT treat a
-# null residual as "no effect" (that would adjust away the phenotype).
-# per-sample TAM+TIM fraction of myeloid
 comp=pc.assign(is_tt=pc.compartment.isin(["TAM","TIM"]))
 tam_frac=(comp.groupby(["Sample","cancer_type","patient_id","condition"],observed=True)
               .agg(n_myeloid=("is_tt","size"),n_tt=("is_tt","sum")).reset_index())
 tam_frac["tt_frac"]=tam_frac["n_tt"]/tam_frac["n_myeloid"]
 tam_frac=tam_frac[tam_frac.n_myeloid>=MIN_CELLS]
 tam_frac.to_csv(os.path.join(TAB,"tamtim_fraction_per_sample.csv"),index=False)
-# D1 COMPOSITION: TAM+TIM fraction interaction (arcsin)
+
 cf=tam_frac[tam_frac.condition.isin(["Tumor","Benign"])].copy()
 cf["condition"]=pd.Categorical(cf["condition"],["Benign","Tumor"]); cf["cancer_type"]=pd.Categorical(cf["cancer_type"],["prostate","RCC"])
 cf["asin"]=np.arcsin(np.sqrt(cf["tt_frac"].clip(0,1)))
 e,l,h,p=ols_coef(cf,"asin ~ C(cancer_type, Treatment('prostate'))*C(condition, Treatment('Benign'))",coef,cluster="patient_id")
 add("D1_composition_TAMTIMfrac_interaction","composition (TAM+TIM fraction, arcsin)",e,l,h,p,"is RCC-skew driven by more TAM+TIM?")
-# D2 STATE within TAM+TIM (tumor-only cross-cancer; RCC benign lacks TAM+TIM so benign-anchor impossible)
+
 st=pc[pc.compartment.isin(["TAM","TIM"])].copy()
 sst=(st.groupby(["Sample","cancer_type","patient_id","condition"],observed=True)
        .agg(score=("CLEC_LAM_aucell","mean"),n=("CLEC_LAM_aucell","size")).reset_index())
@@ -207,21 +167,20 @@ tt_tum=sst[sst.condition=="Tumor"].copy(); tt_tum["cancer_type"]=pd.Categorical(
 e,l,h,p=ols_coef(tt_tum,"score ~ C(cancer_type, Treatment('prostate'))","C(cancer_type, Treatment('prostate'))[T.RCC]",cluster="patient_id")
 add("D2_state_withinTAMTIM_tumor_RCCvsPro","state (within-TAM+TIM CORE, tumor-only)",e,l,h,p,
     f"RCC_tumor_n={(tt_tum.cancer_type=='RCC').sum()} pro_tumor_n={(tt_tum.cancer_type=='prostate').sum()}")
-# prostate-only within-TAM+TIM tumor-vs-benign (prostate DOES have benign TAM+TIM)
+
 pst=sst[sst.cancer_type=="prostate"].copy()
 if pst.condition.isin(["Benign"]).any():
     pst2=pst[pst.condition.isin(["Tumor","Benign"])].copy(); pst2["condition"]=pd.Categorical(pst2["condition"],["Benign","Tumor"])
     e,l,h,p=ols_coef(pst2,"score ~ C(condition, Treatment('Benign'))","C(condition, Treatment('Benign'))[T.Tumor]",cluster="patient_id")
     add("D2b_state_prostate_withinTAMTIM_TvsB","state (prostate within-TAM+TIM tumor vs benign)",e,l,h,p)
-# D3 RESIDUAL: all-myeloid CORE interaction ADJUSTED for TAM+TIM fraction (guarded interpretation)
+
 badj=b.merge(tam_frac[["Sample","tt_frac"]],on="Sample",how="left")
 e,l,h,p=ols_coef(badj,form+" + tt_frac",coef,cluster="patient_id")
 add("D3_interaction_adjTAMTIMfrac_RESIDUAL","residual (interaction | TAM+TIM frac) — GUARDED",e,l,h,p,
     "if attenuated: skew is compositional (=canalization); do NOT read as null")
 
-# ---- FDR across confirmatory set ----
 res=pd.DataFrame(results)
-# C3 confirmatory = arcsin LMM (binomial GLM suffers complete separation: RCC benign ~0 high cells)
+
 conf=["C1_RCC_tumor_vs_benign_allmyeloid","C2_interaction_ownBenign_allmyeloid","C3b_fraction_interaction_arcsinLMM"]
 res["fdr_confirmatory"]=np.nan; pv=res.loc[res.test.isin(conf)&res.p.notna(),"p"]
 if len(pv): res.loc[pv.index,"fdr_confirmatory"]=multipletests(pv,method="fdr_bh")[1]

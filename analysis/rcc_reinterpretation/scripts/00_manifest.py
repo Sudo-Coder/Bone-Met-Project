@@ -1,21 +1,17 @@
 #!/usr/bin/env python
-"""00_manifest.py — reproducible object inventory feeding ../../DATA_MANIFEST.md.
-Reads obs/var/layers/raw in backed mode (metadata only). Run from repo root with the
-envs/sc-general-analysis python. Large integrated .h5ad load .raw into RAM in backed mode;
-use scripts/00b_manifest_h5py.py (h5py, metadata-only) for those."""
 
 import anndata as ad
 import sys, os
 
 paths = [
-    # kidney
+
     "kidney-cancer/Cleaned_Data/combined.h5ad",
     "kidney-cancer/Cleaned_Data/combined-with-stromal.h5ad",
     "kidney-cancer/Cleaned_Data/integrated.h5ad",
     "kidney-cancer/Cleaned_Data/integrated-with-stromal.h5ad",
     "kidney-cancer/Cleaned_Data/myeloid_FINAL_labels.h5ad",
     "kidney-cancer/Cleaned_Data/myeloid_FINAL_labels_old.h5ad",
-    # prostate
+
     "prostate-cancer/Cleaned_Data/benign_combined.h5ad",
     "prostate-cancer/Cleaned_Data/combined.h5ad",
     "prostate-cancer/Cleaned_Data/integrated.h5ad",
@@ -42,7 +38,7 @@ for p in paths:
         continue
     print(f"  shape: n_obs={a.n_obs}  n_vars={a.n_vars}")
     print("  obs columns:", list(a.obs.columns))
-    # for likely categorical columns print value counts
+
     for col in a.obs.columns:
         try:
             vc = a.obs[col]
