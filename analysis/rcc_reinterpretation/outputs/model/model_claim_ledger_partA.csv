@@ -1,0 +1,17 @@
+claim,value,ci_low,ci_high,p,n,cohort,script,line
+ccRCC held-out KM (test),logrank_p,,,8.558589900217129e-05,182,TCGA-KIRC_heldout,08_prognostic_model.py,km_test
+ccRCC train KM,logrank_p,,,1.87297570841356e-16,422,TCGA-KIRC_train,08_prognostic_model.py,km_train
+ccRCC Braun external KM,logrank_p,,,0.32485416996477456,311,Braun_metastatic_ICB,08_prognostic_model.py,km_braun
+ccRCC 10-fold CV C-index (train),0.7253633380771485,,,,422,TCGA-KIRC_train,08_prognostic_model.py,cv
+C-index TCGA-KIRC_train,0.7693928831968874,,,,422,TCGA-KIRC_train,08_prognostic_model.py,disc
+auc_1yr TCGA-KIRC_train,0.8173170597603601,,,,422,TCGA-KIRC_train,08_prognostic_model.py,disc
+auc_3yr TCGA-KIRC_train,0.8094353371611536,,,,422,TCGA-KIRC_train,08_prognostic_model.py,disc
+auc_5yr TCGA-KIRC_train,0.8261056208107004,,,,422,TCGA-KIRC_train,08_prognostic_model.py,disc
+C-index TCGA-KIRC_heldout,0.6927781013395458,,,,182,TCGA-KIRC_heldout,08_prognostic_model.py,disc
+auc_1yr TCGA-KIRC_heldout,0.8016148889665834,,,,182,TCGA-KIRC_heldout,08_prognostic_model.py,disc
+auc_3yr TCGA-KIRC_heldout,0.7222864503446015,,,,182,TCGA-KIRC_heldout,08_prognostic_model.py,disc
+auc_5yr TCGA-KIRC_heldout,0.7042154987134799,,,,182,TCGA-KIRC_heldout,08_prognostic_model.py,disc
+C-index Braun_CheckMate_metastatic_ICB,0.4405773857257418,,,,311,Braun_CheckMate_metastatic_ICB,08_prognostic_model.py,disc
+auc_1yr Braun_CheckMate_metastatic_ICB,,,,,311,Braun_CheckMate_metastatic_ICB,08_prognostic_model.py,disc
+auc_3yr Braun_CheckMate_metastatic_ICB,,,,,311,Braun_CheckMate_metastatic_ICB,08_prognostic_model.py,disc
+auc_5yr Braun_CheckMate_metastatic_ICB,,,,,311,Braun_CheckMate_metastatic_ICB,08_prognostic_model.py,disc

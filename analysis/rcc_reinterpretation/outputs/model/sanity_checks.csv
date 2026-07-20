@@ -1,0 +1,6 @@
+metric,value
+signature_heldout_cindex,0.6927781013395458
+random_gene_cindex_mean,0.5556371578334304
+random_gene_cindex_p95,0.6240099009900989
+panTAM_cindex,0.5757134536983111
+Obradovic_cindex,0.5455736750145603

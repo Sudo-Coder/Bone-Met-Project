@@ -1,0 +1,5 @@
+program,ccRCC_OS_HR,ccRCC_OS_p,ccRCC_OS_cindex,PCa_BCR_HR,PCa_BCR_p,PCa_BCR_cindex,ccRCC_sig,PCa_sig
+ATF3_NFkB,0.947,0.4605,0.48,0.803,0.0542,0.424,no,no
+complement_C1Q,1.227,0.002,0.559,1.056,0.4136,0.504,yes,no
+RCC_skew_CORE,1.206,0.0049,0.552,1.169,0.0123,0.565,yes,yes
+CLEC_LAM8,1.157,0.0284,0.538,1.177,0.0149,0.558,yes,yes
