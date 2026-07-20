@@ -11,7 +11,7 @@ C-index Braun_CheckMate_metastatic_ICB,0.4405773857257418,,,,311.0,Braun_CheckMa
 ccRCC held-out KM (test),logrank_p,,,8.558589900217129e-05,182.0,TCGA-KIRC_heldout,08_prognostic_model.py
 ccRCC Braun external KM,logrank_p,,,0.3248541699647745,311.0,Braun_metastatic_ICB,08_prognostic_model.py
 ccRCC 10-fold CV C-index (train),0.7253633380771485,,,,422.0,TCGA-KIRC_train,08_prognostic_model.py
-multivariable risk HR/SD (adj stage/grade/age),2.0308793677156047,,,2.953524751069224e-19,604.0,TCGA-KIRC,09_nomogram_riskgroup.py
+multivariable risk HR/SD (adj stage/grade/age),2.0308793677156047,,,2.9535247510692244e-19,604.0,TCGA-KIRC,09_nomogram_riskgroup.py
 sanity signature_heldout_cindex,0.6927781013395458,,,,,TCGA-KIRC_heldout,08_prognostic_model.py
 sanity random_gene_cindex_mean,0.5556371578334304,,,,,TCGA-KIRC_heldout,08_prognostic_model.py
 sanity random_gene_cindex_p95,0.6240099009900989,,,,,TCGA-KIRC_heldout,08_prognostic_model.py
@@ -30,3 +30,21 @@ riskgroup immune MHC_I delta,0.0146483680968984,,,0.0778580093556651,,TCGA-KIRC,
 riskgroup immune MHC_II delta,0.0086467914710114,,,0.2619503072248799,,TCGA-KIRC,09_nomogram_riskgroup.py
 riskgroup immune panTAM delta,0.0127519506917579,,,0.630480573291279,,TCGA-KIRC,09_nomogram_riskgroup.py
 riskgroup immune immune_infiltration delta,0.0070185561602517,,,0.0451797054937563,,TCGA-KIRC,09_nomogram_riskgroup.py
+ext validation C-index (CPTAC),0.6932440657334145,,,,110.0,CPTAC_ccRCC_primary,11_model_additions.py
+ext validation AUC 1yr (CPTAC),0.7291666666666667,,,,110.0,CPTAC_ccRCC_primary,11_model_additions.py
+ext validation AUC 3yr (CPTAC),0.6753506662659051,,,,110.0,CPTAC_ccRCC_primary,11_model_additions.py
+ext validation KM logrank p (CPTAC),logrank,,,0.096,110.0,CPTAC_ccRCC_primary,11_model_additions.py
+drug high-vs-low log-IC50 sunitinib,-0.0174779552805302,,,0.9876230682809805,604.0,TCGA-KIRC,11_oncopredict.R
+drug high-vs-low log-IC50 pazopanib,-0.0408870747397691,,,0.1593821734629749,604.0,TCGA-KIRC,11_oncopredict.R
+drug high-vs-low log-IC50 axitinib,-0.1192751212643186,,,0.0006819364330847,604.0,TCGA-KIRC,11_oncopredict.R
+drug high-vs-low log-IC50 cabozantinib,-0.1532361060570415,,,4.50504867717557e-08,604.0,TCGA-KIRC,11_oncopredict.R
+drug high-vs-low log-IC50 temsirolimus,-0.1470254420073609,,,3.1750367732885334e-05,604.0,TCGA-KIRC,11_oncopredict.R
+TIDE high-vs-low TIDE,0.2402132877677051,,,1.3188087516546205e-08,604.0,TCGA-KIRC,11_model_additions.py
+TIDE high-vs-low Dysfunction,0.3483263649968602,,,6.876686382565418e-18,604.0,TCGA-KIRC,11_model_additions.py
+TIDE high-vs-low Exclusion,0.0745585719442043,,,0.1760560441483506,604.0,TCGA-KIRC,11_model_additions.py
+TIDE high-vs-low MDSC,0.0146823364798189,,,4.462591720119996e-05,604.0,TCGA-KIRC,11_model_additions.py
+TIDE high-vs-low CAF,0.0071772425053177,,,0.1050289701328715,604.0,TCGA-KIRC,11_model_additions.py
+TIDE high-vs-low TAM M2,-0.0105439113387334,,,5.960357114869592e-09,604.0,TCGA-KIRC,11_model_additions.py
+TIDE high-vs-low CTL,0.0732726180701457,,,3.280438171820336e-06,604.0,TCGA-KIRC,11_model_additions.py
+DEG enrichment top term (Antigen processing and presentation),1.74327878312264e-25,,,8.587580212426799e-28,144.0,RCC scRNA DEGs,11_model_additions.py
+signature enrichment top term (cytokine-mediated signaling pathway (GO:0019221)),0.0777623111031916,,,0.0009006078352715,25.0,signature,11_model_additions.py

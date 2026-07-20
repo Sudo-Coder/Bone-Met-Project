@@ -1,0 +1,479 @@
+Gene_set,Term,Overlap,P-value,Adjusted P-value,Genes
+GO_Biological_Process_2021,cytokine-mediated signaling pathway (GO:0019221),5/621,0.0009006078352715545,0.0777623111031916,SOCS3;HSPA8;MT2A;MAP3K8;LIMS1
+GO_Biological_Process_2021,response to unfolded protein (GO:0006986),2/49,0.0017016730877234,0.0777623111031916,HSPA8;HERPUD1
+GO_Biological_Process_2021,regulation of gene expression (GO:0010468),6/1079,0.0017761946778134,0.0777623111031916,FUS;ID2;CREM;NFKBID;LIMS1;LGMN
+GO_Biological_Process_2021,regulation of cell population proliferation (GO:0042127),5/764,0.0022566984287947,0.0777623111031916,BTG2;ID2;NAMPT;LIMS1;LGMN
+GO_Biological_Process_2021,receptor metabolic process (GO:0043112),2/58,0.0023754913784137,0.0777623111031916,CD9;LGMN
+GO_Biological_Process_2021,cellular response to nutrient levels (GO:0031669),2/66,0.0030637473161426,0.0777623111031916,HSPA8;PDK4
+GO_Biological_Process_2021,insulin receptor signaling pathway (GO:0008286),2/73,0.0037336095301643,0.0777623111031916,NAMPT;PDK4
+GO_Biological_Process_2021,negative regulation of cellular macromolecule biosynthetic process (GO:2000113),4/547,0.0044340880997437,0.0777623111031916,HSPA8;BTG2;ID2;LIMS1
+GO_Biological_Process_2021,"negative regulation of transcription, DNA-templated (GO:0045892)",5/948,0.005696380592648,0.0777623111031916,TGIF1;HSPA8;ID2;CREM;LIMS1
+GO_Biological_Process_2021,negative regulation of B cell differentiation (GO:0045578),1/5,0.0062349390704731,0.0777623111031916,ID2
+GO_Biological_Process_2021,His-Purkinje system development (GO:0003164),1/5,0.0062349390704731,0.0777623111031916,ID2
+GO_Biological_Process_2021,cellular response to erythropoietin (GO:0036018),1/5,0.0062349390704731,0.0777623111031916,MT2A
+GO_Biological_Process_2021,regulation of protein import (GO:1904589),1/5,0.0062349390704731,0.0777623111031916,HSPA8
+GO_Biological_Process_2021,negative regulation of gene expression (GO:0010629),3/322,0.007314037085207,0.0777623111031916,BTG2;ID2;LGMN
+GO_Biological_Process_2021,steroid metabolic process (GO:0008202),2/104,0.0074314203155166,0.0777623111031916,LIPA;LGMN
+GO_Biological_Process_2021,axo-dendritic transport (GO:0008088),1/6,0.007477446810139,0.0777623111031916,HSPA8
+GO_Biological_Process_2021,protein processing (GO:0016485),2/106,0.0077096444199907,0.0777623111031916,CPM;LGMN
+GO_Biological_Process_2021,glial cell migration (GO:0008347),1/7,0.0087184638276748,0.0777623111031916,CD9
+GO_Biological_Process_2021,positive regulation of ER-associated ubiquitin-dependent protein catabolic process (GO:1903071),1/7,0.0087184638276748,0.0777623111031916,HERPUD1
+GO_Biological_Process_2021,negative regulation of lymphocyte differentiation (GO:0045620),1/7,0.0087184638276748,0.0777623111031916,ID2
+GO_Biological_Process_2021,positive regulation of integrin-mediated signaling pathway (GO:2001046),1/7,0.0087184638276748,0.0777623111031916,LIMS1
+GO_Biological_Process_2021,positive regulation of potassium ion import across plasma membrane (GO:1903288),1/7,0.0087184638276748,0.0777623111031916,ATP1B3
+GO_Biological_Process_2021,positive regulation of T-helper 17 cell differentiation (GO:2000321),1/7,0.0087184638276748,0.0777623111031916,NFKBID
+GO_Biological_Process_2021,polyamine biosynthetic process (GO:0006596),1/7,0.0087184638276748,0.0777623111031916,SAT1
+GO_Biological_Process_2021,positive regulation of astrocyte differentiation (GO:0048711),1/8,0.0099579917015561,0.0777623111031916,ID2
+GO_Biological_Process_2021,regulation of acetyl-CoA biosynthetic process from pyruvate (GO:0010510),1/8,0.0099579917015561,0.0777623111031916,PDK4
+GO_Biological_Process_2021,regulation of acyl-CoA biosynthetic process (GO:0050812),1/8,0.0099579917015561,0.0777623111031916,PDK4
+GO_Biological_Process_2021,myoblast fusion (GO:0007520),1/15,0.0185931285667873,0.0777623111031916,CD9
+GO_Biological_Process_2021,endoplasmic reticulum to cytosol transport (GO:1903513),1/15,0.0185931285667873,0.0777623111031916,HERPUD1
+GO_Biological_Process_2021,negative regulation of nucleic acid-templated transcription (GO:1903507),3/464,0.0195367958034236,0.0777623111031916,HSPA8;ID2;LIMS1
+GO_Biological_Process_2021,negative regulation of anoikis (GO:2000811),1/16,0.0198208026407264,0.0777623111031916,PDK4
+GO_Biological_Process_2021,regulation of cellular carbohydrate metabolic process (GO:0010675),1/16,0.0198208026407264,0.0777623111031916,PDK4
+GO_Biological_Process_2021,negative regulation of platelet activation (GO:0010544),1/16,0.0198208026407264,0.0777623111031916,CD9
+GO_Biological_Process_2021,regulation of ERBB signaling pathway (GO:1901184),1/16,0.0198208026407264,0.0777623111031916,LGMN
+GO_Biological_Process_2021,negative regulation of receptor signaling pathway via JAK-STAT (GO:0046426),1/16,0.0198208026407264,0.0777623111031916,SOCS3
+GO_Biological_Process_2021,regulation of fatty acid oxidation (GO:0046320),1/16,0.0198208026407264,0.0777623111031916,PDK4
+GO_Biological_Process_2021,neuron projection organization (GO:0106027),1/16,0.0198208026407264,0.0777623111031916,LGMN
+GO_Biological_Process_2021,membrane repolarization (GO:0086009),1/16,0.0198208026407264,0.0777623111031916,ATP1B3
+GO_Biological_Process_2021,digestive tract morphogenesis (GO:0048546),1/16,0.0198208026407264,0.0777623111031916,ID2
+GO_Biological_Process_2021,positive regulation of cell population proliferation (GO:0008284),3/474,0.0206605250684399,0.0777623111031916,ID2;NAMPT;LGMN
+GO_Biological_Process_2021,regulation of mitotic cell cycle (GO:0007346),2/178,0.0206610284766727,0.0777623111031916,BTG2;LGMN
+GO_Biological_Process_2021,gliogenesis (GO:0042063),1/17,0.0210470025189844,0.0777623111031916,CD9
+GO_Biological_Process_2021,"retrograde protein transport, ER to cytosol (GO:0030970)",1/17,0.0210470025189844,0.0777623111031916,HERPUD1
+GO_Biological_Process_2021,cellular biogenic amine biosynthetic process (GO:0042401),1/17,0.0210470025189844,0.0777623111031916,SAT1
+GO_Biological_Process_2021,cellular response to fatty acid (GO:0071398),1/17,0.0210470025189844,0.0777623111031916,PDK4
+GO_Biological_Process_2021,copper ion homeostasis (GO:0055070),1/17,0.0210470025189844,0.0777623111031916,MT2A
+GO_Biological_Process_2021,midbody abscission (GO:0061952),1/17,0.0210470025189844,0.0777623111031916,CHMP1B
+GO_Biological_Process_2021,cellular response to cytokine stimulus (GO:0071345),3/482,0.0215849888439554,0.0777623111031916,SOCS3;HSPA8;MT2A
+GO_Biological_Process_2021,regulation of B cell differentiation (GO:0045577),1/18,0.0222717298790694,0.0777623111031916,ID2
+GO_Biological_Process_2021,positive regulation of glial cell differentiation (GO:0045687),1/18,0.0222717298790694,0.0777623111031916,ID2
+GO_Biological_Process_2021,interleukin-6-mediated signaling pathway (GO:0070102),1/18,0.0222717298790694,0.0777623111031916,SOCS3
+GO_Biological_Process_2021,regulation of fatty acid metabolic process (GO:0019217),1/18,0.0222717298790694,0.0777623111031916,PDK4
+GO_Biological_Process_2021,cellular response to zinc ion (GO:0071294),1/18,0.0222717298790694,0.0777623111031916,MT2A
+GO_Biological_Process_2021,regulation of platelet aggregation (GO:0090330),1/18,0.0222717298790694,0.0777623111031916,CD9
+GO_Biological_Process_2021,positive regulation of potassium ion transmembrane transporter activity (GO:1901018),1/14,0.0173639786153884,0.0777623111031916,ATP1B3
+GO_Biological_Process_2021,cellular response to low-density lipoprotein particle stimulus (GO:0071404),1/14,0.0173639786153884,0.0777623111031916,CD9
+GO_Biological_Process_2021,cellular copper ion homeostasis (GO:0006878),1/14,0.0173639786153884,0.0777623111031916,MT2A
+GO_Biological_Process_2021,positive regulation of long-term synaptic potentiation (GO:1900273),1/14,0.0173639786153884,0.0777623111031916,LGMN
+GO_Biological_Process_2021,regulation of response to interferon-gamma (GO:0060330),1/14,0.0173639786153884,0.0777623111031916,SOCS3
+GO_Biological_Process_2021,activation of cysteine-type endopeptidase activity (GO:0097202),1/14,0.0173639786153884,0.0777623111031916,LGMN
+GO_Biological_Process_2021,"regulation of transcription, DNA-templated (GO:0006355)",7/2244,0.017225360064527,0.0777623111031916,TGIF1;HSPA8;KLF6;FUS;ID2;CREM;LIMS1
+GO_Biological_Process_2021,cellular response to starvation (GO:0009267),2/158,0.0165162091658715,0.0777623111031916,HSPA8;PDK4
+GO_Biological_Process_2021,cellular response to growth factor stimulus (GO:0071363),2/158,0.0165162091658715,0.0777623111031916,LIMS1;LGMN
+GO_Biological_Process_2021,polyamine metabolic process (GO:0006595),1/13,0.016133351108423,0.0777623111031916,SAT1
+GO_Biological_Process_2021,sodium ion export across plasma membrane (GO:0036376),1/13,0.016133351108423,0.0777623111031916,ATP1B3
+GO_Biological_Process_2021,positive regulation of nuclear-transcribed mRNA poly(A) tail shortening (GO:0060213),1/13,0.016133351108423,0.0777623111031916,BTG2
+GO_Biological_Process_2021,self proteolysis (GO:0097264),1/8,0.0099579917015561,0.0777623111031916,LGMN
+GO_Biological_Process_2021,response to hepatocyte growth factor (GO:0035728),1/8,0.0099579917015561,0.0777623111031916,LGMN
+GO_Biological_Process_2021,negative regulation of muscle cell differentiation (GO:0051148),1/8,0.0099579917015561,0.0777623111031916,ID2
+GO_Biological_Process_2021,NAD biosynthesis via nicotinamide riboside salvage pathway (GO:0034356),1/14,0.0173639786153884,0.0777623111031916,NAMPT
+GO_Biological_Process_2021,regulation of nitric-oxide synthase biosynthetic process (GO:0051769),1/14,0.0173639786153884,0.0777623111031916,NAMPT
+GO_Biological_Process_2021,positive regulation of T-helper cell differentiation (GO:0045624),1/14,0.0173639786153884,0.0777623111031916,NFKBID
+GO_Biological_Process_2021,neuron fate commitment (GO:0048663),1/14,0.0173639786153884,0.0777623111031916,ID2
+GO_Biological_Process_2021,negative regulation of cellular component movement (GO:0051271),1/15,0.0185931285667873,0.0777623111031916,CD9
+GO_Biological_Process_2021,regulation of integrin-mediated signaling pathway (GO:2001044),1/14,0.0173639786153884,0.0777623111031916,LIMS1
+GO_Biological_Process_2021,embryonic digestive tract morphogenesis (GO:0048557),1/9,0.0111960320481715,0.0777623111031916,ID2
+GO_Biological_Process_2021,regulation of ER-associated ubiquitin-dependent protein catabolic process (GO:1903069),1/9,0.0111960320481715,0.0777623111031916,HERPUD1
+GO_Biological_Process_2021,negative regulation of platelet aggregation (GO:0090331),1/9,0.0111960320481715,0.0777623111031916,CD9
+GO_Biological_Process_2021,associative learning (GO:0008306),1/9,0.0111960320481715,0.0777623111031916,LGMN
+GO_Biological_Process_2021,positive regulation of blood pressure (GO:0045777),1/9,0.0111960320481715,0.0777623111031916,ID2
+GO_Biological_Process_2021,regulation of potassium ion import (GO:1903286),1/8,0.0099579917015561,0.0777623111031916,ATP1B3
+GO_Biological_Process_2021,postsynapse organization (GO:0099173),1/8,0.0099579917015561,0.0777623111031916,LGMN
+GO_Biological_Process_2021,mammary gland epithelial cell differentiation (GO:0060644),1/8,0.0099579917015561,0.0777623111031916,ID2
+GO_Biological_Process_2021,spermidine metabolic process (GO:0008216),1/8,0.0099579917015561,0.0777623111031916,SAT1
+GO_Biological_Process_2021,cellular response to hepatocyte growth factor stimulus (GO:0035729),1/8,0.0099579917015561,0.0777623111031916,LGMN
+GO_Biological_Process_2021,cellular potassium ion homeostasis (GO:0030007),1/13,0.016133351108423,0.0777623111031916,ATP1B3
+GO_Biological_Process_2021,positive regulation of ERAD pathway (GO:1904294),1/13,0.016133351108423,0.0777623111031916,HERPUD1
+GO_Biological_Process_2021,positive regulation of T-helper 17 type immune response (GO:2000318),1/12,0.0149012443701484,0.0777623111031916,NFKBID
+GO_Biological_Process_2021,positive regulation of sodium ion transmembrane transport (GO:1902307),1/12,0.0149012443701484,0.0777623111031916,ATP1B3
+GO_Biological_Process_2021,regulation of astrocyte differentiation (GO:0048710),1/12,0.0149012443701484,0.0777623111031916,ID2
+GO_Biological_Process_2021,negative regulation of complement activation (GO:0045916),1/12,0.0149012443701484,0.0777623111031916,VSIG4
+GO_Biological_Process_2021,adipose tissue development (GO:0060612),1/12,0.0149012443701484,0.0777623111031916,NAMPT
+GO_Biological_Process_2021,regulation of mRNA stability (GO:0043488),2/146,0.014224449586728,0.0777623111031916,HSPA8;FUS
+GO_Biological_Process_2021,regulation of pH (GO:0006885),1/11,0.0136676567242548,0.0777623111031916,PDK4
+GO_Biological_Process_2021,PERK-mediated unfolded protein response (GO:0036499),1/11,0.0136676567242548,0.0777623111031916,HERPUD1
+GO_Biological_Process_2021,positive regulation of nitric-oxide synthase biosynthetic process (GO:0051770),1/11,0.0136676567242548,0.0777623111031916,NAMPT
+GO_Biological_Process_2021,negative regulation of receptor signaling pathway via STAT (GO:1904893),1/11,0.0136676567242548,0.0777623111031916,SOCS3
+GO_Biological_Process_2021,regulation of ERAD pathway (GO:1904292),1/11,0.0136676567242548,0.0777623111031916,HERPUD1
+GO_Biological_Process_2021,positive regulation of macrophage differentiation (GO:0045651),1/11,0.0136676567242548,0.0777623111031916,ID2
+GO_Biological_Process_2021,negative regulation of homotypic cell-cell adhesion (GO:0034111),1/11,0.0136676567242548,0.0777623111031916,CD9
+GO_Biological_Process_2021,myelin assembly (GO:0032288),1/10,0.0124325865055395,0.0777623111031916,CD9
+GO_Biological_Process_2021,negative regulation of tyrosine phosphorylation of STAT protein (GO:0042532),1/10,0.0124325865055395,0.0777623111031916,SOCS3
+GO_Biological_Process_2021,regulation of T-helper 17 cell differentiation (GO:2000319),1/10,0.0124325865055395,0.0777623111031916,NFKBID
+GO_Biological_Process_2021,ESCRT III complex disassembly (GO:1904903),1/10,0.0124325865055395,0.0777623111031916,CHMP1B
+GO_Biological_Process_2021,ESCRT complex disassembly (GO:1904896),1/10,0.0124325865055395,0.0777623111031916,CHMP1B
+GO_Biological_Process_2021,cellular response to metal ion (GO:0071248),2/131,0.0115740314163883,0.0777623111031916,MT2A;LGMN
+GO_Biological_Process_2021,cellular response to insulin stimulus (GO:0032869),2/129,0.011239079846013,0.0777623111031916,NAMPT;PDK4
+GO_Biological_Process_2021,integrated stress response signaling (GO:0140467),1/15,0.0185931285667873,0.0777623111031916,HERPUD1
+GO_Biological_Process_2021,response to acidic pH (GO:0010447),1/15,0.0185931285667873,0.0777623111031916,LGMN
+GO_Biological_Process_2021,positive regulation of endothelial cell chemotaxis (GO:2001028),1/15,0.0185931285667873,0.0777623111031916,LGMN
+GO_Biological_Process_2021,positive regulation of double-strand break repair via homologous recombination (GO:1905168),1/15,0.0185931285667873,0.0777623111031916,FUS
+GO_Biological_Process_2021,negative regulation of endoplasmic reticulum stress-induced intrinsic apoptotic signaling pathway (GO:1902236),1/15,0.0185931285667873,0.0777623111031916,HERPUD1
+GO_Biological_Process_2021,mammary gland epithelium development (GO:0061180),1/15,0.0185931285667873,0.0777623111031916,ID2
+GO_Biological_Process_2021,cellular sodium ion homeostasis (GO:0006883),1/15,0.0185931285667873,0.0777623111031916,ATP1B3
+GO_Biological_Process_2021,regulation of endothelial cell chemotaxis (GO:2001026),1/15,0.0185931285667873,0.0777623111031916,LGMN
+GO_Biological_Process_2021,regulation of macrophage differentiation (GO:0045649),1/15,0.0185931285667873,0.0777623111031916,ID2
+GO_Biological_Process_2021,vitamin D metabolic process (GO:0042359),1/15,0.0185931285667873,0.0777623111031916,LGMN
+GO_Biological_Process_2021,regulation of nuclear-transcribed mRNA poly(A) tail shortening (GO:0060211),1/15,0.0185931285667873,0.0777623111031916,BTG2
+GO_Biological_Process_2021,response to fatty acid (GO:0070542),1/19,0.0234949864071648,0.0786986536565197,PDK4
+GO_Biological_Process_2021,positive regulation of focal adhesion assembly (GO:0051894),1/19,0.0234949864071648,0.0786986536565197,LIMS1
+GO_Biological_Process_2021,cellular response to copper ion (GO:0071280),1/19,0.0234949864071648,0.0786986536565197,MT2A
+GO_Biological_Process_2021,regulation of mitotic spindle assembly (GO:1901673),1/19,0.0234949864071648,0.0786986536565197,CHMP1B
+GO_Biological_Process_2021,positive regulation of monocyte chemotaxis (GO:0090026),1/19,0.0234949864071648,0.0786986536565197,LGMN
+GO_Biological_Process_2021,embryonic digestive tract development (GO:0048566),1/20,0.0247167737784927,0.0789403937731705,ID2
+GO_Biological_Process_2021,negative regulation of macromolecule metabolic process (GO:0010605),2/194,0.0242575974048336,0.0789403937731705,ID2;LGMN
+GO_Biological_Process_2021,mitotic cytokinetic process (GO:1902410),1/20,0.0247167737784927,0.0789403937731705,CHMP1B
+GO_Biological_Process_2021,cellular monovalent inorganic cation homeostasis (GO:0030004),1/20,0.0247167737784927,0.0789403937731705,ATP1B3
+GO_Biological_Process_2021,protein targeting to lysosome (GO:0006622),1/20,0.0247167737784927,0.0789403937731705,HSPA8
+GO_Biological_Process_2021,endoplasmic reticulum calcium ion homeostasis (GO:0032469),1/20,0.0247167737784927,0.0789403937731705,HERPUD1
+GO_Biological_Process_2021,NAD biosynthetic process (GO:0009435),1/21,0.0259370936730085,0.0815731495670192,NAMPT
+GO_Biological_Process_2021,regulation of anoikis (GO:2000209),1/21,0.0259370936730085,0.0815731495670192,PDK4
+GO_Biological_Process_2021,negative regulation of interleukin-2 production (GO:0032703),1/22,0.0271559477765973,0.0828759295108009,VSIG4
+GO_Biological_Process_2021,negative regulation of B cell activation (GO:0050869),1/22,0.0271559477765973,0.0828759295108009,ID2
+GO_Biological_Process_2021,regulation of endoplasmic reticulum stress-induced intrinsic apoptotic signaling pathway (GO:1902235),1/22,0.0271559477765973,0.0828759295108009,HERPUD1
+GO_Biological_Process_2021,regulation of centrosome cycle (GO:0046605),1/22,0.0271559477765973,0.0828759295108009,CHMP1B
+GO_Biological_Process_2021,response to copper ion (GO:0046688),1/23,0.0283733377644313,0.0840993896327028,MT2A
+GO_Biological_Process_2021,regulation of supramolecular fiber organization (GO:1902903),1/23,0.0283733377644313,0.0840993896327028,HSPA8
+GO_Biological_Process_2021,regulation of neural precursor cell proliferation (GO:2000177),1/23,0.0283733377644313,0.0840993896327028,ID2
+GO_Biological_Process_2021,regulation of interferon-gamma-mediated signaling pathway (GO:0060334),1/23,0.0283733377644313,0.0840993896327028,SOCS3
+GO_Biological_Process_2021,positive regulation of cell-substrate junction organization (GO:0150117),1/24,0.0295892653137072,0.0849617633212888,LIMS1
+GO_Biological_Process_2021,potassium ion homeostasis (GO:0055075),1/24,0.0295892653137072,0.0849617633212888,ATP1B3
+GO_Biological_Process_2021,protein exit from endoplasmic reticulum (GO:0032527),1/24,0.0295892653137072,0.0849617633212888,HERPUD1
+GO_Biological_Process_2021,regulation of spindle assembly (GO:0090169),1/25,0.0308037321003649,0.0849617633212888,CHMP1B
+GO_Biological_Process_2021,fat-soluble vitamin metabolic process (GO:0006775),1/25,0.0308037321003649,0.0849617633212888,LGMN
+GO_Biological_Process_2021,receptor catabolic process (GO:0032801),1/25,0.0308037321003649,0.0849617633212888,LGMN
+GO_Biological_Process_2021,negative regulation of response to endoplasmic reticulum stress (GO:1903573),1/25,0.0308037321003649,0.0849617633212888,HERPUD1
+GO_Biological_Process_2021,sodium ion homeostasis (GO:0055078),1/25,0.0308037321003649,0.0849617633212888,ATP1B3
+GO_Biological_Process_2021,ventricular cardiac muscle tissue development (GO:0003229),1/25,0.0308037321003649,0.0849617633212888,ID2
+GO_Biological_Process_2021,endosome transport via multivesicular body sorting pathway (GO:0032509),1/25,0.0308037321003649,0.0849617633212888,CHMP1B
+GO_Biological_Process_2021,positive regulation of ion transmembrane transporter activity (GO:0032414),1/26,0.0320167398038226,0.0849617633212888,ATP1B3
+GO_Biological_Process_2021,chaperone cofactor-dependent protein refolding (GO:0051085),1/26,0.0320167398038226,0.0849617633212888,HSPA8
+GO_Biological_Process_2021,regulation of monocyte chemotaxis (GO:0090025),1/26,0.0320167398038226,0.0849617633212888,LGMN
+GO_Biological_Process_2021,regulation of potassium ion transmembrane transporter activity (GO:1901016),1/26,0.0320167398038226,0.0849617633212888,ATP1B3
+GO_Biological_Process_2021,positive regulation of mitotic cell cycle (GO:0045931),1/27,0.0332282900970065,0.0849617633212888,LGMN
+GO_Biological_Process_2021,cellular response to cadmium ion (GO:0071276),1/27,0.0332282900970065,0.0849617633212888,MT2A
+GO_Biological_Process_2021,cellular response to unfolded protein (GO:0034620),1/27,0.0332282900970065,0.0849617633212888,HSPA8
+GO_Biological_Process_2021,cellular senescence (GO:0090398),1/27,0.0332282900970065,0.0849617633212888,ID2
+GO_Biological_Process_2021,stress-activated protein kinase signaling cascade (GO:0031098),1/27,0.0332282900970065,0.0849617633212888,MAP3K8
+GO_Biological_Process_2021,dendritic spine organization (GO:0097061),1/27,0.0332282900970065,0.0849617633212888,LGMN
+GO_Biological_Process_2021,monovalent inorganic cation homeostasis (GO:0055067),1/27,0.0332282900970065,0.0849617633212888,PDK4
+GO_Biological_Process_2021,regulation of small molecule metabolic process (GO:0062012),1/28,0.0344383846472214,0.0849617633212888,PDK4
+GO_Biological_Process_2021,entrainment of circadian clock by photoperiod (GO:0043153),1/27,0.0332282900970065,0.0849617633212888,ID2
+GO_Biological_Process_2021,regulation of protein transport (GO:0051223),1/28,0.0344383846472214,0.0849617633212888,HSPA8
+GO_Biological_Process_2021,cellular zinc ion homeostasis (GO:0006882),1/28,0.0344383846472214,0.0849617633212888,MT2A
+GO_Biological_Process_2021,cellular response to interleukin-6 (GO:0071354),1/28,0.0344383846472214,0.0849617633212888,SOCS3
+GO_Biological_Process_2021,photoperiodism (GO:0009648),1/28,0.0344383846472214,0.0849617633212888,ID2
+GO_Biological_Process_2021,macromolecule catabolic process (GO:0009057),1/28,0.0344383846472214,0.0849617633212888,LGMN
+GO_Biological_Process_2021,response to zinc ion (GO:0010043),1/29,0.0356470251349897,0.0858863997404431,MT2A
+GO_Biological_Process_2021,response to cadmium ion (GO:0046686),1/29,0.0356470251349897,0.0858863997404431,MT2A
+GO_Biological_Process_2021,regulation of fatty acid biosynthetic process (GO:0042304),1/29,0.0356470251349897,0.0858863997404431,PDK4
+GO_Biological_Process_2021,negative regulation of mRNA catabolic process (GO:1902373),1/29,0.0356470251349897,0.0858863997404431,FUS
+GO_Biological_Process_2021,membrane organization (GO:0061024),2/242,0.0364371283753744,0.0862723627796209,HSPA8;CHMP1B
+GO_Biological_Process_2021,regulation of long-term synaptic potentiation (GO:1900271),1/30,0.0368542132262458,0.0862723627796209,LGMN
+GO_Biological_Process_2021,positive regulation of DNA recombination (GO:0045911),1/30,0.0368542132262458,0.0862723627796209,FUS
+GO_Biological_Process_2021,zinc ion homeostasis (GO:0055069),1/30,0.0368542132262458,0.0862723627796209,MT2A
+GO_Biological_Process_2021,multivesicular body assembly (GO:0036258),1/30,0.0368542132262458,0.0862723627796209,CHMP1B
+GO_Biological_Process_2021,positive regulation of mononuclear cell migration (GO:0071677),1/31,0.0380599505912853,0.0869724001271302,LGMN
+GO_Biological_Process_2021,cellular response to topologically incorrect protein (GO:0035967),1/32,0.0392642388923452,0.0869724001271302,HSPA8
+GO_Biological_Process_2021,regulation of cellular biosynthetic process (GO:0031326),1/32,0.0392642388923452,0.0869724001271302,PDK4
+GO_Biological_Process_2021,negative regulation of peptidyl-tyrosine phosphorylation (GO:0050732),1/31,0.0380599505912853,0.0869724001271302,SOCS3
+GO_Biological_Process_2021,'de novo' posttranslational protein folding (GO:0051084),1/31,0.0380599505912853,0.0869724001271302,HSPA8
+GO_Biological_Process_2021,"RNA splicing, via transesterification reactions with bulged adenosine as nucleophile (GO:0000377)",2/251,0.0389379257150902,0.0869724001271302,HSPA8;FUS
+GO_Biological_Process_2021,metal ion export (GO:0070839),1/32,0.0392642388923452,0.0869724001271302,ATP1B3
+GO_Biological_Process_2021,regulation of transcription involved in G1/S transition of mitotic cell cycle (GO:0000083),1/32,0.0392642388923452,0.0869724001271302,ID2
+GO_Biological_Process_2021,multivesicular body organization (GO:0036257),1/31,0.0380599505912853,0.0869724001271302,CHMP1B
+GO_Biological_Process_2021,regulation of centrosome duplication (GO:0010824),1/32,0.0392642388923452,0.0869724001271302,CHMP1B
+GO_Biological_Process_2021,RNA stabilization (GO:0043489),1/33,0.040467079797891,0.0891574164531076,FUS
+GO_Biological_Process_2021,regulation of glucose metabolic process (GO:0010906),1/34,0.041668474974439,0.0913160196248344,PDK4
+GO_Biological_Process_2021,negative regulation of T cell proliferation (GO:0042130),1/35,0.0428684260822968,0.0915118732948513,VSIG4
+GO_Biological_Process_2021,regulation of mitotic spindle organization (GO:0060236),1/35,0.0428684260822968,0.0915118732948513,CHMP1B
+GO_Biological_Process_2021,regulation of muscle cell differentiation (GO:0051147),1/35,0.0428684260822968,0.0915118732948513,ID2
+GO_Biological_Process_2021,regulation of lipid biosynthetic process (GO:0046890),1/35,0.0428684260822968,0.0915118732948513,PDK4
+GO_Biological_Process_2021,cellular response to amyloid-beta (GO:1904646),1/35,0.0428684260822968,0.0915118732948513,LGMN
+GO_Biological_Process_2021,regulation of cell cycle G1/S phase transition (GO:1902806),1/36,0.044066934781374,0.0926304955608475,ID2
+GO_Biological_Process_2021,positive regulation of substrate adhesion-dependent cell spreading (GO:1900026),1/36,0.044066934781374,0.0926304955608475,LIMS1
+GO_Biological_Process_2021,positive regulation of myeloid leukocyte differentiation (GO:0002763),1/36,0.044066934781374,0.0926304955608475,ID2
+GO_Biological_Process_2021,"mRNA splicing, via spliceosome (GO:0000398)",2/274,0.0456178352792913,0.0954037976399392,HSPA8;FUS
+GO_Biological_Process_2021,negative regulation of innate immune response (GO:0045824),1/38,0.0464596315903414,0.0961877799759832,VSIG4
+GO_Biological_Process_2021,connective tissue development (GO:0061448),1/38,0.0464596315903414,0.0961877799759832,NAMPT
+GO_Biological_Process_2021,negative regulation of lymphocyte proliferation (GO:0050672),1/39,0.0476538230195537,0.0976784830052545,VSIG4
+GO_Biological_Process_2021,regulation of cellular component biogenesis (GO:0044087),1/39,0.0476538230195537,0.0976784830052545,HSPA8
+GO_Biological_Process_2021,negative regulation of ERBB signaling pathway (GO:1901185),1/40,0.048846578661385,0.0991368985639932,LGMN
+GO_Biological_Process_2021,positive regulation of double-strand break repair (GO:2000781),1/40,0.048846578661385,0.0991368985639932,FUS
+GO_Biological_Process_2021,proteolysis (GO:0006508),2/287,0.0495694559308418,0.1001108619779747,CPM;LGMN
+GO_Biological_Process_2021,signal release from synapse (GO:0099643),1/43,0.0524162474254504,0.1009160575404587,HSPA8
+GO_Biological_Process_2021,negative regulation of transcription by RNA polymerase II (GO:0000122),3/684,0.0524116198787514,0.1009160575404587,TGIF1;ID2;CREM
+GO_Biological_Process_2021,regulation of cell-substrate adhesion (GO:0010810),1/43,0.0524162474254504,0.1009160575404587,LIMS1
+GO_Biological_Process_2021,potassium ion import across plasma membrane (GO:1990573),1/42,0.0512277892154369,0.1009160575404587,ATP1B3
+GO_Biological_Process_2021,positive regulation of ATPase activity (GO:0032781),1/42,0.0512277892154369,0.1009160575404587,ATP1B3
+GO_Biological_Process_2021,regulation of transcription by RNA polymerase II (GO:0006357),6/2206,0.0503465780560093,0.1009160575404587,TGIF1;KLF6;FUS;ID2;NAMPT;CREM
+GO_Biological_Process_2021,phosphatidylinositol phosphate biosynthetic process (GO:0046854),1/42,0.0512277892154369,0.1009160575404587,SOCS3
+GO_Biological_Process_2021,positive regulation of potassium ion transmembrane transport (GO:1901381),1/44,0.053603276456753,0.1009160575404587,ATP1B3
+GO_Biological_Process_2021,embryonic organ morphogenesis (GO:0048562),1/44,0.053603276456753,0.1009160575404587,ID2
+GO_Biological_Process_2021,mRNA stabilization (GO:0048255),1/44,0.053603276456753,0.1009160575404587,FUS
+GO_Biological_Process_2021,neurotransmitter secretion (GO:0007269),1/44,0.053603276456753,0.1009160575404587,HSPA8
+GO_Biological_Process_2021,response to amyloid-beta (GO:1904645),1/44,0.053603276456753,0.1009160575404587,LGMN
+GO_Biological_Process_2021,positive regulation of mRNA catabolic process (GO:0061014),1/44,0.053603276456753,0.1009160575404587,BTG2
+GO_Biological_Process_2021,positive regulation of cell-matrix adhesion (GO:0001954),1/44,0.053603276456753,0.1009160575404587,LIMS1
+GO_Biological_Process_2021,mRNA processing (GO:0006397),2/300,0.0536422733042729,0.1009160575404587,HSPA8;FUS
+GO_Biological_Process_2021,regulation of receptor signaling pathway via JAK-STAT (GO:0046425),1/45,0.054788877942146,0.101224294673382,SOCS3
+GO_Biological_Process_2021,positive regulation of chemotaxis (GO:0050921),1/45,0.054788877942146,0.101224294673382,LGMN
+GO_Biological_Process_2021,negative regulation of T cell activation (GO:0050868),1/45,0.054788877942146,0.101224294673382,VSIG4
+GO_Biological_Process_2021,zymogen activation (GO:0031638),1/45,0.054788877942146,0.101224294673382,LGMN
+GO_Biological_Process_2021,positive regulation of smooth muscle cell proliferation (GO:0048661),1/46,0.0559730535406075,0.1020393719412845,ID2
+GO_Biological_Process_2021,erythrocyte differentiation (GO:0030218),1/46,0.0559730535406075,0.1020393719412845,ID2
+GO_Biological_Process_2021,regulation of double-strand break repair via homologous recombination (GO:0010569),1/46,0.0559730535406075,0.1020393719412845,FUS
+GO_Biological_Process_2021,regulation of cellular metabolic process (GO:0031323),1/47,0.057155804891704,0.1032815421727283,PDK4
+GO_Biological_Process_2021,epithelial to mesenchymal transition (GO:0001837),1/47,0.057155804891704,0.1032815421727283,LIMS1
+GO_Biological_Process_2021,regulation of interleukin-2 production (GO:0032663),1/48,0.0583371336275197,0.1040471820542776,VSIG4
+GO_Biological_Process_2021,nucleus organization (GO:0006997),1/48,0.0583371336275197,0.1040471820542776,CHMP1B
+GO_Biological_Process_2021,negative regulation of mitotic cell cycle (GO:0045930),1/48,0.0583371336275197,0.1040471820542776,BTG2
+GO_Biological_Process_2021,regulation of smooth muscle cell proliferation (GO:0048660),1/49,0.0595170414020208,0.105240433723745,ID2
+GO_Biological_Process_2021,receptor internalization (GO:0031623),1/49,0.0595170414020208,0.105240433723745,CD9
+GO_Biological_Process_2021,positive regulation of cell morphogenesis involved in differentiation (GO:0010770),1/50,0.0606955298241754,0.1064108863300437,LIMS1
+GO_Biological_Process_2021,regulation of cellular component movement (GO:0051270),1/50,0.0606955298241754,0.1064108863300437,CD9
+GO_Biological_Process_2021,mitotic metaphase plate congression (GO:0007080),1/51,0.0618726005630431,0.1066590436484257,CHMP1B
+GO_Biological_Process_2021,mesenchymal cell differentiation (GO:0048762),1/51,0.0618726005630431,0.1066590436484257,LIMS1
+GO_Biological_Process_2021,positive regulation of fat cell differentiation (GO:0045600),1/51,0.0618726005630431,0.1066590436484257,ID2
+GO_Biological_Process_2021,regulation of substrate adhesion-dependent cell spreading (GO:1900024),1/51,0.0618726005630431,0.1066590436484257,LIMS1
+GO_Biological_Process_2021,regulation of intrinsic apoptotic signaling pathway (GO:2001242),1/52,0.0630482552333339,0.1082328381505565,HERPUD1
+GO_Biological_Process_2021,positive regulation of NIK/NF-kappaB signaling (GO:1901224),1/53,0.0642224954747202,0.1097911540895631,LIMS1
+GO_Biological_Process_2021,regulation of focal adhesion assembly (GO:0051893),1/54,0.0653953228992461,0.1108760207180633,LIMS1
+GO_Biological_Process_2021,positive regulation of leukocyte chemotaxis (GO:0002690),1/54,0.0653953228992461,0.1108760207180633,LGMN
+GO_Biological_Process_2021,regulation of cardiac conduction (GO:1903779),1/55,0.0665667391581141,0.1123995759555041,ATP1B3
+GO_Biological_Process_2021,protein-containing complex disassembly (GO:0032984),1/56,0.067736745861726,0.1134452816871184,HSPA8
+GO_Biological_Process_2021,"DNA damage response, signal transduction by p53 class mediator resulting in cell cycle arrest (GO:0006977)",1/56,0.067736745861726,0.1134452816871184,BTG2
+GO_Biological_Process_2021,positive regulation of cell junction assembly (GO:1901890),1/57,0.0689053446517472,0.1144717822440316,LIMS1
+GO_Biological_Process_2021,cellular response to peptide (GO:1901653),1/57,0.0689053446517472,0.1144717822440316,LGMN
+GO_Biological_Process_2021,positive regulation of tyrosine phosphorylation of STAT protein (GO:0042531),1/59,0.071238324931138,0.1178722484804372,SOCS3
+GO_Biological_Process_2021,cellular protein catabolic process (GO:0044257),1/60,0.0724027096697759,0.1193196655357907,LGMN
+GO_Biological_Process_2021,B cell differentiation (GO:0030183),1/61,0.0735656929646674,0.1202740694501705,KLF6
+GO_Biological_Process_2021,pattern recognition receptor signaling pathway (GO:0002221),1/61,0.0735656929646674,0.1202740694501705,LGMN
+GO_Biological_Process_2021,positive regulation of cysteine-type endopeptidase activity (GO:2001056),1/62,0.074727276437816,0.1212111728046464,LGMN
+GO_Biological_Process_2021,stress-activated MAPK cascade (GO:0051403),1/62,0.074727276437816,0.1212111728046464,MAP3K8
+GO_Biological_Process_2021,negative regulation of intrinsic apoptotic signaling pathway (GO:2001243),1/64,0.0770462503405892,0.1235138332308278,HERPUD1
+GO_Biological_Process_2021,regulation of cellular ketone metabolic process (GO:0010565),1/64,0.0770462503405892,0.1235138332308278,PDK4
+GO_Biological_Process_2021,protein catabolic process (GO:0030163),1/64,0.0770462503405892,0.1235138332308278,HSPA8
+GO_Biological_Process_2021,regulation of RNA metabolic process (GO:0051252),1/65,0.0782036440133172,0.1244011634497555,FUS
+GO_Biological_Process_2021,mitotic G1 DNA damage checkpoint signaling (GO:0031571),1/65,0.0782036440133172,0.1244011634497555,BTG2
+GO_Biological_Process_2021,positive regulation of cell cycle (GO:0045787),1/66,0.079359644289574,0.1252726952004003,LGMN
+GO_Biological_Process_2021,cell-cell junction assembly (GO:0007043),1/66,0.079359644289574,0.1252726952004003,CD9
+GO_Biological_Process_2021,regulation of tyrosine phosphorylation of STAT protein (GO:0042509),1/68,0.0816674711385058,0.1279353540268608,SOCS3
+GO_Biological_Process_2021,interferon-gamma-mediated signaling pathway (GO:0060333),1/68,0.0816674711385058,0.1279353540268608,MT2A
+GO_Biological_Process_2021,positive regulation of macromolecule metabolic process (GO:0010604),2/384,0.0825782073495796,0.1287605735014384,ID2;LIMS1
+GO_Biological_Process_2021,cellular response to calcium ion (GO:0071277),1/69,0.0828193009171873,0.1287605735014384,LGMN
+GO_Biological_Process_2021,sterol metabolic process (GO:0016125),1/70,0.0839697437215684,0.1290878149749484,LIPA
+GO_Biological_Process_2021,carbohydrate homeostasis (GO:0033500),1/70,0.0839697437215684,0.1290878149749484,PDK4
+GO_Biological_Process_2021,positive regulation of cell-substrate adhesion (GO:0010811),1/70,0.0839697437215684,0.1290878149749484,LIMS1
+GO_Biological_Process_2021,response to metal ion (GO:0010038),1/71,0.0851188011585982,0.1294057050824446,MT2A
+GO_Biological_Process_2021,negative regulation of neuron apoptotic process (GO:0043524),1/71,0.0851188011585982,0.1294057050824446,LGMN
+GO_Biological_Process_2021,regulation of G1/S transition of mitotic cell cycle (GO:2000045),1/71,0.0851188011585982,0.1294057050824446,ID2
+GO_Biological_Process_2021,negative regulation of supramolecular fiber organization (GO:1902904),1/72,0.0862664748551896,0.1301896983162568,HSPA8
+GO_Biological_Process_2021,cell junction organization (GO:0034330),1/72,0.0862664748551896,0.1301896983162568,LIMS1
+GO_Biological_Process_2021,ubiquitin-dependent ERAD pathway (GO:0030433),1/73,0.0874127663656434,0.1304857237052358,HERPUD1
+GO_Biological_Process_2021,neurotransmitter transport (GO:0006836),1/73,0.0874127663656434,0.1304857237052358,HSPA8
+GO_Biological_Process_2021,positive regulation of synaptic transmission (GO:0050806),1/73,0.0874127663656434,0.1304857237052358,LGMN
+GO_Biological_Process_2021,proteolysis involved in cellular protein catabolic process (GO:0051603),1/74,0.0885576772971073,0.1307733442523592,LGMN
+GO_Biological_Process_2021,regulation of cytokine-mediated signaling pathway (GO:0001959),1/74,0.0885576772971073,0.1307733442523592,SOCS3
+GO_Biological_Process_2021,"DNA damage response, signal transduction by p53 class mediator (GO:0030330)",1/74,0.0885576772971073,0.1307733442523592,BTG2
+GO_Biological_Process_2021,transmembrane receptor protein tyrosine kinase signaling pathway (GO:0007169),2/404,0.0900589438436644,0.1325153030842491,NAMPT;PDK4
+GO_Biological_Process_2021,regulation of RNA splicing (GO:0043484),1/76,0.0908433638322228,0.1327215102797014,FUS
+GO_Biological_Process_2021,regulation of T cell proliferation (GO:0042129),1/76,0.0908433638322228,0.1327215102797014,VSIG4
+GO_Biological_Process_2021,inorganic cation import across plasma membrane (GO:0098659),1/77,0.0919841426094813,0.1339133100887149,ATP1B3
+KEGG_2021_Human,Antigen processing and presentation,2/78,0.0042501160167748,0.1344455167300123,HSPA8;LGMN
+KEGG_2021_Human,TGF-beta signaling pathway,2/94,0.0061111598513641,0.1344455167300123,TGIF1;ID2
+KEGG_2021_Human,Mineral absorption,2/60,0.0025397444622594,0.1344455167300123,MT2A;ATP1B3
+GO_Biological_Process_2021,negative regulation of cell cycle (GO:0045786),1/80,0.0953982400052786,0.1346029961718315,BTG2
+GO_Biological_Process_2021,regulation of NIK/NF-kappaB signaling (GO:1901222),1/80,0.0953982400052786,0.1346029961718315,LIMS1
+GO_Biological_Process_2021,regulation of neuron differentiation (GO:0045664),1/79,0.0942615791008967,0.1346029961718315,ID2
+GO_Biological_Process_2021,positive regulation of cell adhesion (GO:0045785),1/80,0.0953982400052786,0.1346029961718315,LIMS1
+GO_Biological_Process_2021,negative regulation of cellular component organization (GO:0051129),1/80,0.0953982400052786,0.1346029961718315,HSPA8
+GO_Biological_Process_2021,negative regulation of apoptotic signaling pathway (GO:2001234),1/78,0.0931235471667537,0.1346029961718315,HERPUD1
+GO_Biological_Process_2021,regulation of fat cell differentiation (GO:0045598),1/80,0.0953982400052786,0.1346029961718315,ID2
+GO_Biological_Process_2021,positive regulation of proteasomal ubiquitin-dependent protein catabolic process (GO:0032436),1/79,0.0942615791008967,0.1346029961718315,HERPUD1
+GO_Biological_Process_2021,regulation of cellular response to heat (GO:1900034),1/79,0.0942615791008967,0.1346029961718315,HSPA8
+GO_Biological_Process_2021,cell-cell junction organization (GO:0045216),1/82,0.0976674550008274,0.1373344418441669,LIMS1
+GO_Biological_Process_2021,peptide metabolic process (GO:0006518),1/83,0.0988000122711018,0.1384544389649454,CPM
+GO_Biological_Process_2021,regulation of nucleic acid-templated transcription (GO:1903506),2/430,0.1000775452826155,0.1392971238393162,FUS;CREM
+GO_Biological_Process_2021,lymphocyte differentiation (GO:0030098),1/84,0.0999312048078505,0.1392971238393162,KLF6
+GO_Biological_Process_2021,B cell activation (GO:0042113),1/85,0.1010610342090092,0.1401924110912855,KLF6
+GO_Biological_Process_2021,glucose homeostasis (GO:0042593),1/86,0.1021895020267238,0.1403402494500341,PDK4
+GO_Biological_Process_2021,positive regulation of endothelial cell migration (GO:0010595),1/86,0.1021895020267238,0.1403402494500341,LGMN
+GO_Biological_Process_2021,negative regulation of cellular amide metabolic process (GO:0034249),1/86,0.1021895020267238,0.1403402494500341,BTG2
+GO_Biological_Process_2021,sodium ion transmembrane transport (GO:0035725),1/87,0.1033166098523801,0.1409484876131808,ATP1B3
+GO_Biological_Process_2021,ERAD pathway (GO:0036503),1/87,0.1033166098523801,0.1409484876131808,HERPUD1
+KEGG_2021_Human,Lysosome,2/128,0.0110732557767541,0.1411618620200959,LIPA;LGMN
+KEGG_2021_Human,TNF signaling pathway,2/112,0.0085722422040996,0.1411618620200959,SOCS3;MAP3K8
+KEGG_2021_Human,Adrenergic signaling in cardiomyocytes,2/150,0.014971712638495,0.1411618620200959,CREM;ATP1B3
+KEGG_2021_Human,Spliceosome,2/150,0.014971712638495,0.1411618620200959,HSPA8;FUS
+GO_Biological_Process_2021,post-Golgi vesicle-mediated transport (GO:0006892),1/89,0.1055667517960405,0.1435429100329,HSPA8
+GO_Biological_Process_2021,sodium ion transport (GO:0006814),1/90,0.1066897890566922,0.1436476898410366,ATP1B3
+GO_Biological_Process_2021,negative regulation of translation (GO:0017148),1/90,0.1066897890566922,0.1436476898410366,BTG2
+GO_Biological_Process_2021,protein complex oligomerization (GO:0051259),1/90,0.1066897890566922,0.1436476898410366,FUS
+GO_Biological_Process_2021,toll-like receptor signaling pathway (GO:0002224),1/91,0.1078114725710848,0.1446851032550063,LGMN
+GO_Biological_Process_2021,regulation of lipid metabolic process (GO:0019216),1/92,0.108931803930084,0.1457139714908916,ID2
+GO_Biological_Process_2021,regulation of heart contraction (GO:0008016),1/93,0.110050784689784,0.1462610428780355,ATP1B3
+GO_Biological_Process_2021,regulation of epithelial cell proliferation (GO:0050678),1/93,0.110050784689784,0.1462610428780355,LIMS1
+GO_Biological_Process_2021,interleukin-1-mediated signaling pathway (GO:0070498),1/94,0.1111684164109228,0.1467993191067314,MAP3K8
+GO_Biological_Process_2021,negative regulation of cellular protein metabolic process (GO:0032269),1/94,0.1111684164109228,0.1467993191067314,BTG2
+GO_Biological_Process_2021,cellular transition metal ion homeostasis (GO:0046916),1/96,0.1133996389684807,0.1492672564057957,MT2A
+GO_Biological_Process_2021,negative regulation of neuron death (GO:1901215),1/98,0.1156254840416987,0.1493344809566767,LGMN
+GO_Biological_Process_2021,regulation of cellular macromolecule biosynthetic process (GO:2000112),2/468,0.1152609741925176,0.1493344809566767,FUS;CREM
+GO_Biological_Process_2021,protein maturation (GO:0051604),1/97,0.1145132329103644,0.1493344809566767,CPM
+GO_Biological_Process_2021,regulation of neuron apoptotic process (GO:0043523),1/98,0.1156254840416987,0.1493344809566767,LGMN
+GO_Biological_Process_2021,RNA splicing (GO:0008380),1/98,0.1156254840416987,0.1493344809566767,FUS
+GO_Biological_Process_2021,antigen processing and presentation of exogenous peptide antigen via MHC class II (GO:0019886),1/98,0.1156254840416987,0.1493344809566767,LGMN
+GO_Biological_Process_2021,antigen processing and presentation of peptide antigen via MHC class II (GO:0002495),1/100,0.1178459640404217,0.1517266787020429,LGMN
+GO_Biological_Process_2021,regulation of proteasomal ubiquitin-dependent protein catabolic process (GO:0032434),1/102,0.1200610913811501,0.153142940089888,HERPUD1
+GO_Biological_Process_2021,cell junction assembly (GO:0034329),1/102,0.1200610913811501,0.153142940089888,LIMS1
+GO_Biological_Process_2021,mitotic sister chromatid segregation (GO:0000070),1/102,0.1200610913811501,0.153142940089888,CHMP1B
+GO_Biological_Process_2021,positive regulation of gene expression (GO:0010628),2/482,0.1210018407729126,0.153602032247475,ID2;LIMS1
+GO_Biological_Process_2021,antigen processing and presentation of exogenous peptide antigen (GO:0002478),1/103,0.1211666516515276,0.153602032247475,LGMN
+GO_Biological_Process_2021,cellular metal ion homeostasis (GO:0006875),1/104,0.1222708784099096,0.154053828455299,ATP1B3
+GO_Biological_Process_2021,negative regulation of apoptotic process (GO:0043066),2/485,0.1222416130229823,0.154053828455299,PDK4;LGMN
+GO_Biological_Process_2021,response to calcium ion (GO:0051592),1/107,0.1255755728775445,0.1577351708095986,LGMN
+KEGG_2021_Human,Protein processing in endoplasmic reticulum,2/171,0.0191650954260513,0.1581120372649232,HSPA8;HERPUD1
+GO_Biological_Process_2021,response to endoplasmic reticulum stress (GO:0034976),1/110,0.1288683209334415,0.1613791739348872,HERPUD1
+GO_Biological_Process_2021,cellular divalent inorganic cation homeostasis (GO:0072503),1/111,0.1299632560145039,0.1622571559938655,MT2A
+KEGG_2021_Human,Steroid biosynthesis,1/20,0.0247167737784927,0.1631307069380519,LIPA
+KEGG_2021_Human,Transcriptional misregulation in cancer,2/192,0.0237947850127502,0.1631307069380519,FUS;ID2
+GO_Biological_Process_2021,cellular response to transforming growth factor beta stimulus (GO:0071560),1/114,0.1332401398918733,0.1653461976971439,LIMS1
+GO_Biological_Process_2021,positive regulation of nucleic acid-templated transcription (GO:1903508),2/511,0.133120147881337,0.1653461976971439,KLF6;ID2
+GO_Biological_Process_2021,cellular amide metabolic process (GO:0043603),1/115,0.1343297991538407,0.1661978295837309,CPM
+GO_Biological_Process_2021,regulation of protein-containing complex assembly (GO:0043254),1/116,0.1354181432510356,0.166544104535602,HSPA8
+GO_Biological_Process_2021,tumor necrosis factor-mediated signaling pathway (GO:0033209),1/116,0.1354181432510356,0.166544104535602,LIMS1
+GO_Biological_Process_2021,regulation of cellular response to stress (GO:0080135),1/118,0.1375908921143905,0.1687126415212169,HSPA8
+KEGG_2021_Human,Proximal tubule bicarbonate reclamation,1/23,0.0283733377644313,0.1702400265865878,ATP1B3
+GO_Biological_Process_2021,protein homooligomerization (GO:0051260),1/121,0.1408401897643215,0.1716750242097646,FUS
+GO_Biological_Process_2021,cellular response to interferon-gamma (GO:0071346),1/121,0.1408401897643215,0.1716750242097646,MT2A
+GO_Biological_Process_2021,potassium ion transport (GO:0006813),1/122,0.1419206748709737,0.1719744648436505,ATP1B3
+GO_Biological_Process_2021,regulation of mRNA catabolic process (GO:0061013),1/122,0.1419206748709737,0.1719744648436505,HSPA8
+GO_Biological_Process_2021,platelet degranulation (GO:0002576),1/125,0.1451543090229181,0.1751354332422817,CD9
+GO_Biological_Process_2021,negative regulation of growth (GO:0045926),1/126,0.146229585037245,0.1751354332422817,MT2A
+GO_Biological_Process_2021,circulatory system development (GO:0072359),1/126,0.146229585037245,0.1751354332422817,ID2
+GO_Biological_Process_2021,phosphatidylinositol biosynthetic process (GO:0006661),1/126,0.146229585037245,0.1751354332422817,SOCS3
+GO_Biological_Process_2021,plasma membrane bounded cell projection organization (GO:0120036),1/128,0.1483762430447092,0.1771913395200585,BTG2
+GO_Biological_Process_2021,positive regulation of macromolecule biosynthetic process (GO:0010557),1/129,0.1494476280522189,0.17795497906796,NAMPT
+GO_Biological_Process_2021,regulation of primary metabolic process (GO:0080090),1/130,0.1505177190475093,0.1787126808287431,ID2
+GO_Biological_Process_2021,positive regulation of peptidyl-tyrosine phosphorylation (GO:0050731),1/134,0.1547851729254945,0.183251411624436,SOCS3
+GO_Biological_Process_2021,cellular calcium ion homeostasis (GO:0006874),1/136,0.1569111747282574,0.1836573976933012,HERPUD1
+GO_Biological_Process_2021,organic substance transport (GO:0071702),1/136,0.1569111747282574,0.1836573976933012,CHMP1B
+GO_Biological_Process_2021,protein localization to plasma membrane (GO:0072659),1/136,0.1569111747282574,0.1836573976933012,ATP1B3
+GO_Biological_Process_2021,negative regulation of cellular process (GO:0048523),2/566,0.1568363770282464,0.1836573976933012,BTG2;CD9
+GO_Biological_Process_2021,regulation of cellular component organization (GO:0051128),1/139,0.1600905544475611,0.1863200803175005,HSPA8
+GO_Biological_Process_2021,potassium ion transmembrane transport (GO:0071805),1/139,0.1600905544475611,0.1863200803175005,ATP1B3
+GO_Biological_Process_2021,protein localization to cell periphery (GO:1990778),1/140,0.1611477875160956,0.1870222210045955,ATP1B3
+GO_Biological_Process_2021,negative regulation of DNA-binding transcription factor activity (GO:0043433),1/143,0.1643118269041299,0.1885695617952689,ID2
+GO_Biological_Process_2021,neuron development (GO:0048666),1/143,0.1643118269041299,0.1885695617952689,BTG2
+GO_Biological_Process_2021,receptor-mediated endocytosis (GO:0006898),1/143,0.1643118269041299,0.1885695617952689,CD9
+GO_Biological_Process_2021,nitrogen compound transport (GO:0071705),1/143,0.1643118269041299,0.1885695617952689,CHMP1B
+GO_Biological_Process_2021,positive regulation of hydrolase activity (GO:0051345),1/149,0.1706055694327323,0.1952485961285714,LIMS1
+KEGG_2021_Human,MAPK signaling pathway,2/294,0.0517477464314105,0.2002952484197788,HSPA8;MAP3K8
+KEGG_2021_Human,Arginine and proline metabolism,1/50,0.0606955298241754,0.2002952484197788,SAT1
+KEGG_2021_Human,Nicotinate and nicotinamide metabolism,1/35,0.0428684260822968,0.2002952484197788,NAMPT
+KEGG_2021_Human,Cholesterol metabolism,1/50,0.0606955298241754,0.2002952484197788,LIPA
+KEGG_2021_Human,Endocytosis,2/252,0.039219800556344,0.2002952484197788,HSPA8;CHMP1B
+KEGG_2021_Human,Ferroptosis,1/41,0.0500379001782909,0.2002952484197788,SAT1
+KEGG_2021_Human,Carbohydrate digestion and absorption,1/47,0.057155804891704,0.2002952484197788,ATP1B3
+KEGG_2021_Human,Aldosterone-regulated sodium reabsorption,1/37,0.0452640027356933,0.2002952484197788,ATP1B3
+KEGG_2021_Human,Type II diabetes mellitus,1/46,0.0559730535406075,0.2002952484197788,SOCS3
+KEGG_2021_Human,Complement and coagulation cascades,1/85,0.1010610342090092,0.2017469493763509,VSIG4
+KEGG_2021_Human,Salivary secretion,1/93,0.110050784689784,0.2017469493763509,ATP1B3
+KEGG_2021_Human,Thyroid hormone synthesis,1/75,0.0897012092618635,0.2017469493763509,ATP1B3
+KEGG_2021_Human,Legionellosis,1/57,0.0689053446517472,0.2017469493763509,HSPA8
+KEGG_2021_Human,Endocrine and other factor-regulated calcium reabsorption,1/53,0.0642224954747202,0.2017469493763509,ATP1B3
+KEGG_2021_Human,Prolactin signaling pathway,1/70,0.0839697437215684,0.2017469493763509,SOCS3
+KEGG_2021_Human,Adipocytokine signaling pathway,1/69,0.0828193009171873,0.2017469493763509,SOCS3
+KEGG_2021_Human,Bile secretion,1/90,0.1066897890566922,0.2017469493763509,ATP1B3
+KEGG_2021_Human,RNA degradation,1/79,0.0942615791008967,0.2017469493763509,BTG2
+KEGG_2021_Human,T cell receptor signaling pathway,1/104,0.1222708784099096,0.2017469493763509,MAP3K8
+KEGG_2021_Human,Toll-like receptor signaling pathway,1/104,0.1222708784099096,0.2017469493763509,MAP3K8
+KEGG_2021_Human,Pancreatic secretion,1/102,0.1200610913811501,0.2017469493763509,ATP1B3
+KEGG_2021_Human,Protein digestion and absorption,1/103,0.1211666516515276,0.2017469493763509,ATP1B3
+KEGG_2021_Human,Hematopoietic cell lineage,1/99,0.1167363938849271,0.2017469493763509,CD9
+KEGG_2021_Human,Longevity regulating pathway,1/102,0.1200610913811501,0.2017469493763509,HSPA8
+KEGG_2021_Human,Cardiac muscle contraction,1/87,0.1033166098523801,0.2017469493763509,ATP1B3
+KEGG_2021_Human,Insulin secretion,1/86,0.1021895020267238,0.2017469493763509,ATP1B3
+KEGG_2021_Human,mRNA surveillance pathway,1/98,0.1156254840416987,0.2017469493763509,FUS
+KEGG_2021_Human,Gastric acid secretion,1/76,0.0908433638322228,0.2017469493763509,ATP1B3
+KEGG_2021_Human,Aldosterone synthesis and secretion,1/98,0.1156254840416987,0.2017469493763509,ATP1B3
+GO_Biological_Process_2021,cellular response to interleukin-1 (GO:0071347),1/155,0.1768537947593154,0.2018386798915178,MAP3K8
+GO_Biological_Process_2021,regulation of cell differentiation (GO:0045595),1/156,0.1778907625398479,0.2024613098519816,ID2
+KEGG_2021_Human,Insulin resistance,1/108,0.1266744808885122,0.2039150180156538,SOCS3
+GO_Biological_Process_2021,T cell receptor signaling pathway (GO:0050852),1/158,0.1799609371529336,0.2042531848677924,NFKBID
+GO_Biological_Process_2021,"positive regulation of transcription, DNA-templated (GO:0045893)",3/1183,0.1816239282757722,0.2055743364000499,KLF6;ID2;NAMPT
+KEGG_2021_Human,Toxoplasmosis,1/112,0.1310568698603139,0.2059465097804932,HSPA8
+GO_Biological_Process_2021,positive regulation of cellular process (GO:0048522),2/625,0.1831363169344649,0.2067182536356152,NAMPT;LGMN
+GO_Biological_Process_2021,heart development (GO:0007507),1/164,0.186141477717026,0.209536308249767,ID2
+KEGG_2021_Human,"Growth hormone synthesis, secretion and action",1/119,0.1386752998975814,0.2112602846464822,SOCS3
+KEGG_2021_Human,Thyroid hormone signaling pathway,1/121,0.1408401897643215,0.2112602846464822,ATP1B3
+KEGG_2021_Human,Osteoclast differentiation,1/127,0.1473035625420727,0.2160452250617066,SOCS3
+KEGG_2021_Human,Estrogen signaling pathway,1/137,0.1579722495308103,0.2168916115134515,HSPA8
+KEGG_2021_Human,Ubiquitin mediated proteolysis,1/140,0.1611477875160956,0.2168916115134515,SOCS3
+KEGG_2021_Human,Measles,1/139,0.1600905544475611,0.2168916115134515,HSPA8
+KEGG_2021_Human,Insulin signaling pathway,1/137,0.1579722495308103,0.2168916115134515,SOCS3
+KEGG_2021_Human,Signaling pathways regulating pluripotency of stem cells,1/143,0.1643118269041299,0.2168916115134515,ID2
+GO_Biological_Process_2021,neuron projection development (GO:0031175),1/171,0.1932955936304884,0.2169966882173331,BTG2
+GO_Biological_Process_2021,neuron differentiation (GO:0030182),1/174,0.1963431270625283,0.2198189357330481,ID2
+KEGG_2021_Human,Necroptosis,1/159,0.1809941468902013,0.2221374029223988,CHMP1B
+KEGG_2021_Human,Hippo signaling pathway,1/163,0.1851145024353323,0.2221374029223988,ID2
+KEGG_2021_Human,Non-alcoholic fatty liver disease,1/155,0.1768537947593154,0.2221374029223988,SOCS3
+KEGG_2021_Human,Hepatitis C,1/157,0.1789264761901417,0.2221374029223988,SOCS3
+KEGG_2021_Human,JAK-STAT signaling pathway,1/162,0.1840862831598885,0.2221374029223988,SOCS3
+KEGG_2021_Human,cGMP-PKG signaling pathway,1/167,0.1892149539686911,0.2230033386059574,ATP1B3
+GO_Biological_Process_2021,regulation of translation (GO:0006417),1/178,0.2003893164795339,0.2236547041457957,BTG2
+GO_Biological_Process_2021,protein stabilization (GO:0050821),1/179,0.2013978039759471,0.2236547041457957,ATP1B3
+GO_Biological_Process_2021,RNA processing (GO:0006396),1/179,0.2013978039759471,0.2236547041457957,FUS
+GO_Biological_Process_2021,regulated exocytosis (GO:0045055),1/180,0.2024050703435067,0.2241690564019483,CD9
+KEGG_2021_Human,Influenza A,1/172,0.1943126687057049,0.2249936163960794,SOCS3
+GO_Biological_Process_2021,negative regulation of cytokine production (GO:0001818),1/182,0.2044159453927395,0.2257891943748222,VSIG4
+GO_Biological_Process_2021,antigen receptor-mediated signaling pathway (GO:0050851),1/185,0.2074231350428311,0.2284982129348834,NFKBID
+GO_Biological_Process_2021,regulation of mitotic cell cycle phase transition (GO:1901990),1/188,0.2104194109499281,0.231180792830321,ID2
+KEGG_2021_Human,NOD-like receptor signaling pathway,1/181,0.2034111170125662,0.231467822807403,NAMPT
+GO_Biological_Process_2021,regulation of GTPase activity (GO:0043087),1/189,0.2114157508984971,0.2316576844951617,LIMS1
+KEGG_2021_Human,RNA transport,1/186,0.2084231044276492,0.2331512693597432,FUS
+GO_Biological_Process_2021,negative regulation of cell differentiation (GO:0045596),1/191,0.2134048111310349,0.2332169288752954,ID2
+GO_Biological_Process_2021,cellular response to tumor necrosis factor (GO:0071356),1/194,0.2163793733909548,0.235842068352046,LIMS1
+GO_Biological_Process_2021,protein localization to membrane (GO:0072657),1/195,0.2173684922367035,0.2362950364156249,ATP1B3
+GO_Biological_Process_2021,negative regulation of intracellular signal transduction (GO:1902532),1/198,0.2203286625590105,0.2388826551955587,HERPUD1
+GO_Biological_Process_2021,regulation of macromolecule metabolic process (GO:0060255),1/200,0.2222961348450487,0.2403832219321787,NFKBID
+GO_Biological_Process_2021,modification-dependent protein catabolic process (GO:0019941),1/201,0.2232780827804394,0.2408130107474896,HERPUD1
+KEGG_2021_Human,Diabetic cardiomyopathy,1/203,0.2252384091287941,0.2477622500416735,PDK4
+KEGG_2021_Human,Lipid and atherosclerosis,1/215,0.2369009994904709,0.2532113817848446,HSPA8
+KEGG_2021_Human,cAMP signaling pathway,1/216,0.2378652374342479,0.2532113817848446,ATP1B3
+GO_Biological_Process_2021,positive regulation of GTPase activity (GO:0043547),1/214,0.2359355904663216,0.2538001652013695,LIMS1
+GO_Biological_Process_2021,cellular response to lipid (GO:0071396),1/219,0.240750938381015,0.2583056943046307,PDK4
+GO_Biological_Process_2021,positive regulation of signal transduction (GO:0009967),1/252,0.2718092387571449,0.2908711853712823,LIMS1
+GO_Biological_Process_2021,positive regulation of cell differentiation (GO:0045597),1/258,0.2773235736047722,0.2960033998061299,ID2
+GO_Biological_Process_2021,cellular component assembly (GO:0022607),1/261,0.2800656860052651,0.2981577845844166,LIMS1
+GO_Biological_Process_2021,negative regulation of signal transduction (GO:0009968),1/267,0.2855199757491873,0.3031810051769721,LGMN
+KEGG_2021_Human,Prion disease,1/273,0.2909345841373809,0.3047886119534466,HSPA8
+GO_Biological_Process_2021,inorganic cation transmembrane transport (GO:0098662),1/274,0.2918331804044608,0.3090880985260613,ATP1B3
+GO_Biological_Process_2021,DNA metabolic process (GO:0006259),1/277,0.2945224145218552,0.3111364994436009,BTG2
+GO_Biological_Process_2021,regulation of cell cycle (GO:0051726),1/296,0.311327940254809,0.3280488782224585,ID2
+GO_Biological_Process_2021,DNA repair (GO:0006281),1/298,0.313074417008322,0.329047601549563,BTG2
+GO_Biological_Process_2021,positive regulation of transcription by RNA polymerase II (GO:0045944),2/908,0.3148831351305229,0.3301064928085889,KLF6;NAMPT
+GO_Biological_Process_2021,MAPK cascade (GO:0000165),1/303,0.3174220265507131,0.3319235404540452,MAP3K8
+GO_Biological_Process_2021,chemical synaptic transmission (GO:0007268),1/306,0.3200178996557216,0.3337908219193855,HSPA8
+GO_Biological_Process_2021,proteasome-mediated ubiquitin-dependent protein catabolic process (GO:0043161),1/321,0.3328557450883828,0.3463044620616508,HERPUD1
+GO_Biological_Process_2021,cellular response to oxygen-containing compound (GO:1901701),1/323,0.3345497751245923,0.3471901948396272,PDK4
+GO_Biological_Process_2021,post-translational protein modification (GO:0043687),1/345,0.3529136452779844,0.3653276931018331,SOCS3
+GO_Biological_Process_2021,cellular response to DNA damage stimulus (GO:0006974),1/350,0.3570188779358029,0.3686510719537613,BTG2
+GO_Biological_Process_2021,ubiquitin-dependent protein catabolic process (GO:0006511),1/354,0.3602850505843202,0.3710936021018498,HERPUD1
+GO_Biological_Process_2021,cellular protein modification process (GO:0006464),2/1025,0.3691704588199363,0.3792973292613809,SOCS3;PDK4
+KEGG_2021_Human,Amyotrophic lateral sclerosis,1/364,0.3683809474250587,0.3798928520320918,FUS
+GO_Biological_Process_2021,protein transport (GO:0015031),1/369,0.3723919203682807,0.3816554009744569,CHMP1B
+GO_Biological_Process_2021,negative regulation of cell population proliferation (GO:0008285),1/379,0.3803406343055469,0.3888345938806087,BTG2
+GO_Biological_Process_2021,phosphorylation (GO:0016310),1/400,0.396719541631115,0.4045753741386619,PDK4
+GO_Biological_Process_2021,cellular protein metabolic process (GO:0044267),1/417,0.4096734535169073,0.4167542292567057,LGMN
+GO_Biological_Process_2021,organelle organization (GO:0006996),1/420,0.4119315430579297,0.4180192013297218,CHMP1B
+GO_Biological_Process_2021,organelle assembly (GO:0070925),1/425,0.4156766104472609,0.4207832027131978,CHMP1B
+KEGG_2021_Human,Pathways of neurodegeneration,1/475,0.4518895760040144,0.458841723327153,FUS
+GO_Biological_Process_2021,neutrophil degranulation (GO:0043312),1/481,0.4560874828527986,0.4605589287631202,HSPA8
+GO_Biological_Process_2021,neutrophil activation involved in immune response (GO:0002283),1/485,0.4588689212696588,0.4622347079782382,HSPA8
+GO_Biological_Process_2021,neutrophil mediated immunity (GO:0002446),1/488,0.4609460339122279,0.4631945511508242,HSPA8
+GO_Biological_Process_2021,protein phosphorylation (GO:0006468),1/496,0.466447648734769,0.4675825578557782,PDK4
+KEGG_2021_Human,Herpes simplex virus 1 infection,1/498,0.46781460667218,0.46781460667218,SOCS3
+GO_Biological_Process_2021,positive regulation of intracellular signal transduction (GO:1902533),1/546,0.4996308828689895,0.4996308828689895,LIMS1
