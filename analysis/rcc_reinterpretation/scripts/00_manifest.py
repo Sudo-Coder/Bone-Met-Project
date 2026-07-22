@@ -23,7 +23,7 @@ paths = [
     "prostate-cancer/integrated.h5ad",
 ]
 
-CHECK_GENES = ["ATF3","C1QA","C1QB","C1QC","APOE","APOC1","TREM2","GPNMB","MERTK","FOLR2","SELENOP","ABCA1","CH25H","C3","SERPING1","CA9","PAX8","CD68","CD163"]
+CHECK_GENES = ["ATF3", "C1QA", "C1QB", "C1QC", "APOE", "APOC1", "TREM2", "GPNMB", "MERTK", "FOLR2", "SELENOP", "ABCA1", "CH25H", "C3", "SERPING1", "CA9", "PAX8", "CD68", "CD163"]
 
 for p in paths:
     print("="*90)
@@ -32,7 +32,7 @@ for p in paths:
         print("  MISSING")
         continue
     try:
-        a = ad.read_h5ad(p, backed="r")
+        a = ad.read_h5ad(p, backed = "r")
     except Exception as e:
         print("  ERROR reading:", e)
         continue
@@ -42,10 +42,10 @@ for p in paths:
     for col in a.obs.columns:
         try:
             vc = a.obs[col]
-            nun = vc.nunique(dropna=True)
+            nun = vc.nunique(dropna = True)
             if nun <= 40:
-                counts = vc.value_counts(dropna=False)
-                print(f"    [{col}] ({nun} uniq): " + ", ".join(f"{k}={v}" for k,v in counts.items()))
+                counts = vc.value_counts(dropna = False)
+                print(f"    [{col}] ({nun} uniq): " + ", ".join(f"{k}={v}" for k, v in counts.items()))
         except Exception as e:
             pass
     print("  obsm:", list(a.obsm.keys()))

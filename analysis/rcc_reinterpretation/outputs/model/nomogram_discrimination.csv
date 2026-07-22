@@ -1,0 +1,3 @@
+model,cohort,n,events,cindex,auc_1yr,auc_3yr,auc_5yr
+signature + stage + grade + age (nomogram),TCGA-KIRC_train,416,140,0.8190967243851329,0.8907780296507443,0.8576523407098149,0.8514294453673158
+signature + stage + grade + age (nomogram),TCGA-KIRC_heldout,178,60,0.7999695771219958,0.8735778807248823,0.8337291392228614,0.776786419348504

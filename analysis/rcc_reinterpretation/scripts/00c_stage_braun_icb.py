@@ -5,57 +5,57 @@ import pandas as pd
 BASE = os.path.join(os.path.dirname(__file__), "..", "..", "..",
                     "resources", "external_icb", "braun_checkmate")
 BASE = os.path.abspath(BASE)
-RAW  = os.path.join(BASE, "raw", "41591_2020_839_MOESM2_ESM.xlsx")
-OUT  = os.path.join(BASE, "processed")
-os.makedirs(OUT, exist_ok=True)
+RAW = os.path.join(BASE, "raw", "41591_2020_839_MOESM2_ESM.xlsx")
+OUT = os.path.join(BASE, "processed")
+os.makedirs(OUT, exist_ok = True)
 
-CORE = ["C1QA","C1QB","C1QC","APOE","APOC1","TREM2","GPNMB","MERTK"]
+CORE = ["C1QA", "C1QB", "C1QC", "APOE", "APOC1", "TREM2", "GPNMB", "MERTK"]
 
 if not os.path.exists(RAW):
     print(f"[BLOCKED] Braun XLSX not found. Drop it here:\n  {RAW}\n"
           f"Download: https://static-content.springer.com/esm/art%3A10.1038%2Fs41591-020-0839-y/"
-          f"MediaObjects/41591_2020_839_MOESM2_ESM.xlsx", file=sys.stderr)
+          f"MediaObjects/41591_2020_839_MOESM2_ESM.xlsx", file = sys.stderr)
     sys.exit(2)
 
-md5 = hashlib.md5(open(RAW,"rb").read()).hexdigest()
+md5 = hashlib.md5(open(RAW, "rb").read()).hexdigest()
 print(f"raw md5: {md5}")
 
-xl = pd.ExcelFile(RAW, engine="openpyxl")
+xl = pd.ExcelFile(RAW, engine = "openpyxl")
 print("sheets:", xl.sheet_names)
 
-s1 = xl.parse("S1_Clinical_and_Immune_Data", skiprows=1)
-s1 = s1.rename(columns={s1.columns[0]: "SUBJID"})
-s1.to_csv(os.path.join(OUT, "clinical.tsv"), sep="\t", index=False)
+s1 = xl.parse("S1_Clinical_and_Immune_Data", skiprows = 1)
+s1 = s1.rename(columns = {s1.columns[0]: "SUBJID"})
+s1.to_csv(os.path.join(OUT, "clinical.tsv"), sep = "\t", index = False)
 
-treatment = s1[["SUBJID","Cohort","Arm"]].copy()
-treatment.to_csv(os.path.join(OUT, "treatment.tsv"), sep="\t", index=False)
+treatment = s1[["SUBJID", "Cohort", "Arm"]].copy()
+treatment.to_csv(os.path.join(OUT, "treatment.tsv"), sep = "\t", index = False)
 
-resp_cols = ["SUBJID","Tumor_Shrinkage","ORR","Benefit","ExtremeResponder","irORR"]
+resp_cols = ["SUBJID", "Tumor_Shrinkage", "ORR", "Benefit", "ExtremeResponder", "irORR"]
 s1[[c for c in resp_cols if c in s1.columns]].to_csv(
-    os.path.join(OUT, "response.tsv"), sep="\t", index=False)
+    os.path.join(OUT, "response.tsv"), sep = "\t", index = False)
 
-surv_cols = ["SUBJID","OS","OS_CNSR","PFS","PFS_CNSR","irPFS","irPFS_CNSR"]
+surv_cols = ["SUBJID", "OS", "OS_CNSR", "PFS", "PFS_CNSR", "irPFS", "irPFS_CNSR"]
 s1[[c for c in surv_cols if c in s1.columns]].to_csv(
-    os.path.join(OUT, "survival.tsv"), sep="\t", index=False)
+    os.path.join(OUT, "survival.tsv"), sep = "\t", index = False)
 
-covar_cols = ["SUBJID","Cohort","Arm","Age","Sex","MSKCC","IMDC","Sarc_or_Rhab",
-              "Received_Prior_Therapy","Number_of_Prior_Therapies","SampleType",
-              "Tumor_Sample_Primary_or_Metastasis","Site_of_Metastasis",
-              "Purity","Ploidy","TMB_Counts","WGII","ImmunoPhenotype","TM_CD8_Density",
-              "PBRM1","Deletion_9p21.3","Angio","Teff","Myeloid","Javelin","Merck18"]
+covar_cols = ["SUBJID", "Cohort", "Arm", "Age", "Sex", "MSKCC", "IMDC", "Sarc_or_Rhab",
+              "Received_Prior_Therapy", "Number_of_Prior_Therapies", "SampleType",
+              "Tumor_Sample_Primary_or_Metastasis", "Site_of_Metastasis",
+              "Purity", "Ploidy", "TMB_Counts", "WGII", "ImmunoPhenotype", "TM_CD8_Density",
+              "PBRM1", "Deletion_9p21.3", "Angio", "Teff", "Myeloid", "Javelin", "Merck18"]
 s1[[c for c in covar_cols if c in s1.columns]].to_csv(
-    os.path.join(OUT, "covariates.tsv"), sep="\t", index=False)
+    os.path.join(OUT, "covariates.tsv"), sep = "\t", index = False)
 
-expr = xl.parse("S4A_RNA_Expression", skiprows=1)
-expr = expr.rename(columns={expr.columns[0]: "gene_name"}).set_index("gene_name")
-expr.to_csv(os.path.join(OUT, "expression_normalized.tsv"), sep="\t")
+expr = xl.parse("S4A_RNA_Expression", skiprows = 1)
+expr = expr.rename(columns = {expr.columns[0]: "gene_name"}).set_index("gene_name")
+expr.to_csv(os.path.join(OUT, "expression_normalized.tsv"), sep = "\t")
 
-deconv = xl.parse("S4C_CIBERSORTx", skiprows=1)
-deconv = deconv.rename(columns={deconv.columns[0]: "cell_type"}).set_index("cell_type")
-deconv.to_csv(os.path.join(OUT, "immune_deconv.tsv"), sep="\t")
+deconv = xl.parse("S4C_CIBERSORTx", skiprows = 1)
+deconv = deconv.rename(columns = {deconv.columns[0]: "cell_type"}).set_index("cell_type")
+deconv.to_csv(os.path.join(OUT, "immune_deconv.tsv"), sep = "\t")
 
 expr_samples = list(expr.columns)
-rna_map = s1.set_index("RNA_ID")[["SUBJID","Cohort","Arm"]] if "RNA_ID" in s1.columns else None
+rna_map = s1.set_index("RNA_ID")[["SUBJID", "Cohort", "Arm"]] if "RNA_ID" in s1.columns else None
 rows = []
 for e in expr_samples:
     if rna_map is not None and e in rna_map.index:
@@ -65,10 +65,10 @@ for e in expr_samples:
     else:
         rows.append({"RNA_ID": e, "SUBJID": None, "Cohort": None, "Arm": None, "has_rna": True})
 man = pd.DataFrame(rows)
-man.to_csv(os.path.join(OUT, "sample_manifest.tsv"), sep="\t", index=False)
+man.to_csv(os.path.join(OUT, "sample_manifest.tsv"), sep = "\t", index = False)
 
 present = [g for g in CORE if g in expr.index]
-absent  = [g for g in CORE if g not in expr.index]
+absent = [g for g in CORE if g not in expr.index]
 n_link = int(man["SUBJID"].notna().sum())
 print("\n=== STAGING REPORT ===")
 print(f"clinical:   {s1.shape[0]} subjects x {s1.shape[1]} cols")
@@ -79,7 +79,7 @@ print(f"cohorts:    {s1['Cohort'].value_counts().to_dict()}")
 print(f"arms:       {s1['Arm'].value_counts().to_dict()}")
 print(f"CORE present ({len(present)}/8): {present}")
 print(f"CORE ABSENT: {absent}")
-for ep in ["OS","OS_CNSR","PFS","PFS_CNSR","ORR","Benefit"]:
+for ep in ["OS", "OS_CNSR", "PFS", "PFS_CNSR", "ORR", "Benefit"]:
     if ep in s1.columns:
         nn = int(s1[ep].notna().sum())
         print(f"  endpoint {ep}: {nn} non-null")

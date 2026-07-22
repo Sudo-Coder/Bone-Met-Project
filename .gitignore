@@ -11,6 +11,7 @@
 !/prostate-cancer/
 !/kidney-cancer/
 !/analysis/
+!/figures/
 !/environment.yml
 !/install.R
 !/renv.lock
@@ -63,3 +64,35 @@
 # CellChat/CopyKAT input-staging intermediates (regenerable from scripts)
 **/outputs/tables/cellchat_input/
 **/outputs/tables/copykat_input/
+
+# ---- publication hygiene (added 2026-07-22) ----
+# CNV validation intermediates: only the summary table and the figure are needed
+analysis/**/outputs/cnv/copykat/
+analysis/**/outputs/cnv/infercnv/*
+!analysis/**/outputs/cnv/infercnv/cnv_score_per_cell.csv
+!analysis/**/outputs/cnv/infercnv/cnv_summary_by_compartment.csv
+analysis/**/outputs/tables/copykat_input/
+analysis/**/outputs/tables/cellchat_input/
+analysis/**/outputs/tables/*.rds
+analysis/**/outputs/tables/*.parquet
+
+# scheduler + run artefacts
+**/logs/
+**/*.sbatch
+**/*.out
+**/*.err
+**/__pycache__/
+**/.ipynb_checkpoints/
+
+# internal working notes and analysis records: kept locally, not published
+analysis/**/CLAUDE.md
+analysis/**/CHANGELOG.md
+analysis/**/CLAIM_LEDGER.md
+analysis/**/PHASE*
+analysis/**/*_ADDENDUM*.md
+analysis/**/DATA_UPDATE_*.md
+analysis/DATA_MANIFEST.md
+kidney-cancer/analysis/
+kidney-cancer/deprecated/
+analysis/**/22_copykat*
+prostate-cancer/verify_transfer.sh

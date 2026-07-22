@@ -1,0 +1,7 @@
+comparator,n_genes_in,n_selected,heldout_cindex,vs_signature
+25-gene signature (frozen),25,25.0,0.6927781013395458,0.0
+"Obradovic TREM2 genes (refit, same pipeline)",11,7.0,0.6014851485148515,0.091
+"panTAM genes (refit, same pipeline)",7,3.0,0.5463016889924287,0.146
+"CLEC_LAM8 core (refit, same pipeline)",8,1.0,0.5805183459522423,0.112
+"random 25-gene sets from same pool (refit), mean",25,,0.6546338089691323,0.038
+"random sets (refit), 95th percentile",25,,0.6959740827023878,-0.003

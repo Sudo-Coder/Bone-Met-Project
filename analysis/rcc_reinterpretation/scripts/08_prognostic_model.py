@@ -10,7 +10,7 @@ out = os.path.join(root, 'analysis/rcc_reinterpretation/outputs/model')
 os.makedirs(out, exist_ok = True)
 np.random.seed(0)
 
-core = ['C1QA','C1QB','C1QC','APOE','APOC1','TREM2','GPNMB','MERTK']
+core = ['C1QA', 'C1QB', 'C1QC', 'APOE', 'APOC1', 'TREM2', 'GPNMB', 'MERTK']
 
 adata = ad.read_h5ad(os.path.join(root, 'kidney-cancer/Cleaned_Data/myeloid_FINAL_labels.h5ad'))
 mye = adata.raw.to_adata()
@@ -19,24 +19,26 @@ mye.obs = adata.obs.copy()
 def map_group(x):
     if x == 'TAM':
         return 'TAM'
-    elif x in ['Mono1','Mono2','Mono3']:
+    elif x in ['Mono1', 'Mono2', 'Mono3']:
         return 'Mono'
     else:
         return 'other'
 
 mye.obs['grp'] = mye.obs['final_label'].map(map_group)
-sub = mye[mye.obs['grp'].isin(['TAM','Mono'])].copy()
+sub = mye[mye.obs['grp'].isin(['TAM', 'Mono'])].copy()
 sc.tl.rank_genes_groups(sub, 'grp', groups = ['TAM'], reference = 'Mono', method = 'wilcoxon')
 deg = sc.get.rank_genes_groups_df(sub, group = 'TAM')
 deg = deg[(deg['logfoldchanges'] > 0.5) & (deg['pvals_adj'] < 0.01)].sort_values('scores', ascending = False).head(150)
 
 cand, seen = [], set()
 for g in core:
-    cand.append((g, 'core_module')); seen.add(g)
+    cand.append((g, 'core_module'))
+    seen.add(g)
 for g in deg['names']:
     if g not in seen:
-        cand.append((g, 'TAM_DEG')); seen.add(g)
-cand_df = pd.DataFrame(cand, columns = ['gene','source'])
+        cand.append((g, 'TAM_DEG'))
+        seen.add(g)
+cand_df = pd.DataFrame(cand, columns = ['gene', 'source'])
 cand_df.to_csv(os.path.join(out, 'candidate_genes.csv'), index = False)
 
 kirc = pd.read_csv(os.path.join(root, 'resources/tcga/KIRC_HiSeqV2.gz'), sep = '\t', index_col = 0)
@@ -47,7 +49,7 @@ surv['bcr'] = surv['sample'].str[:15]
 pool = [g for g in cand_df['gene'] if g in kirc.index]
 expr = kirc.loc[pool].T
 expr['bcr'] = [s[:15] for s in expr.index]
-clin = surv[['bcr','OS','OS.time']].dropna()
+clin = surv[['bcr', 'OS', 'OS.time']].dropna()
 clin = clin[clin['OS.time'] > 0]
 df = expr.merge(clin, on = 'bcr')
 
@@ -61,12 +63,12 @@ from statsmodels.stats.multitest import multipletests
 
 uni = []
 for g in pool:
-    d = train[[g,'OS','OS.time']].copy()
+    d = train[[g, 'OS', 'OS.time']].copy()
     d['z'] = (d[g] - d[g].mean()) / d[g].std()
-    cox = CoxPHFitter().fit(d[['z','OS.time','OS']], 'OS.time', 'OS')
+    cox = CoxPHFitter().fit(d[['z', 'OS.time', 'OS']], 'OS.time', 'OS')
     r = cox.summary.loc['z']
     uni.append([g, np.exp(r['coef']), np.exp(r['coef lower 95%']), np.exp(r['coef upper 95%']), r['p']])
-uni = pd.DataFrame(uni, columns = ['gene','HR','ci_low','ci_high','p'])
+uni = pd.DataFrame(uni, columns = ['gene', 'HR', 'ci_low', 'ci_high', 'p'])
 uni['fdr'] = multipletests(uni['p'], method = 'fdr_bh')[1]
 uni = uni.sort_values('p')
 uni.to_csv(os.path.join(out, 'univariate_cox.csv'), index = False)
@@ -105,11 +107,15 @@ cv_mean = np.array(cv_mean)
 best = alphas[np.nanargmax(cv_mean)]
 cv_cindex = float(np.nanmax(cv_mean))
 
-plt.figure(figsize = (7,4))
+plt.figure(figsize = (7, 4))
 plt.plot(np.log10(alphas), cv_mean, marker = 'o', ms = 3)
 plt.axvline(np.log10(best), color = 'red', ls = '--')
-plt.xlabel('log10(alpha)'); plt.ylabel('cv concordance'); plt.title('LASSO-Cox 10-fold CV (train)')
-plt.tight_layout(); plt.savefig(os.path.join(out, 'lasso_cv.png'), dpi = 200); plt.close()
+plt.xlabel('log10(alpha)')
+plt.ylabel('cv concordance')
+plt.title('LASSO-Cox 10-fold CV (train)')
+plt.tight_layout()
+plt.savefig(os.path.join(out, 'lasso_cv.png'), dpi = 200)
+plt.close()
 
 fin = CoxnetSurvivalAnalysis(l1_ratio = 1.0, alphas = [best], fit_baseline_model = True, max_iter = 100000).fit(xz, y_tr)
 coef = pd.Series(fin.coef_.ravel(), index = sig)
@@ -126,7 +132,9 @@ with open(os.path.join(out, 'risk_model.json'), 'w') as f:
     json.dump(model, f, indent = 2)
 
 genes = np.array(model['genes'])
-mm = np.array(model['mean']); ss = np.array(model['sd']); cc = np.array(model['coef'])
+mm = np.array(model['mean'])
+ss = np.array(model['sd'])
+cc = np.array(model['coef'])
 
 def risk_of(mat):
     have = [g for g in genes if g in mat.columns]
@@ -147,8 +155,8 @@ def km_plot(d, title, fname):
     d['OS'] = pd.to_numeric(d['OS']).astype(int)
     cut = d['risk'].median()
     d['g2'] = np.where(d['risk'] >= cut, 'high', 'low')
-    plt.figure(figsize = (6,5))
-    for lev in ['low','high']:
+    plt.figure(figsize = (6, 5))
+    for lev in ['low', 'high']:
         m = d['g2'] == lev
         if m.sum() == 0:
             continue
@@ -156,8 +164,11 @@ def km_plot(d, title, fname):
         kmf.plot_survival_function()
     hi, lo = d['g2'] == 'high', d['g2'] == 'low'
     lr = logrank_test(d['OS.time'][hi].values, d['OS.time'][lo].values, d['OS'][hi].values, d['OS'][lo].values)
-    plt.title(title + ' (logrank p=' + format(lr.p_value, '.2e') + ')'); plt.xlabel('days')
-    plt.tight_layout(); plt.savefig(os.path.join(out, fname), dpi = 200); plt.close()
+    plt.title(title + ' (logrank p=' + format(lr.p_value, '.2e') + ')')
+    plt.xlabel('days')
+    plt.tight_layout()
+    plt.savefig(os.path.join(out, fname), dpi = 200)
+    plt.close()
     return lr.p_value
 
 p_train = km_plot(train, 'TCGA-KIRC train OS by risk', 'km_train.png')
@@ -188,11 +199,11 @@ braun_m = pd.read_csv(os.path.join(root, 'resources/external_icb/braun_checkmate
 have = [g for g in genes if g in braun_e.index]
 bt = braun_e.loc[have].T
 bt['RNA_ID'] = bt.index
-bt = bt.merge(braun_m[['RNA_ID','SUBJID']], on = 'RNA_ID').merge(braun_s[['SUBJID','OS','OS_CNSR']], on = 'SUBJID')
-bt = bt.dropna(subset = ['OS','OS_CNSR'])
+bt = bt.merge(braun_m[['RNA_ID', 'SUBJID']], on = 'RNA_ID').merge(braun_s[['SUBJID', 'OS', 'OS_CNSR']], on = 'SUBJID')
+bt = bt.dropna(subset = ['OS', 'OS_CNSR'])
 bt = bt[bt['OS'] > 0]
 bt['ev'] = (bt['OS_CNSR'] == 0).astype(int)
-bt = bt.rename(columns = {'OS':'OS.time','ev':'OS'})
+bt = bt.rename(columns = {'OS': 'OS.time', 'ev': 'OS'})
 bt['OS.time'] = pd.to_numeric(bt['OS.time'])
 bt['OS'] = bt['OS'].astype(int)
 bt['risk'] = risk_of(bt)
@@ -216,8 +227,8 @@ rand_c = np.abs(np.array(rand_c) - 0.5) + 0.5
 
 kz = kirc.copy()
 kz.columns = [s[:15] for s in kz.columns]
-ctrl = {'panTAM': ['CD68','CD163','MRC1','CSF1R','LYZ','AIF1','FCGR3A'],
-        'Obradovic': ['TREM2','APOE','APOC1','C1QA','C1QB','C1QC','GPNMB','FOLR2','SPP1','CTSD','CD68']}
+ctrl = {'panTAM': ['CD68', 'CD163', 'MRC1', 'CSF1R', 'LYZ', 'AIF1', 'FCGR3A'],
+        'Obradovic': ['TREM2', 'APOE', 'APOC1', 'C1QA', 'C1QB', 'C1QC', 'GPNMB', 'FOLR2', 'SPP1', 'CTSD', 'CD68']}
 ctrl_c = {}
 for k, gs in ctrl.items():
     gg = [g for g in gs if g in kz.index]
@@ -240,11 +251,11 @@ led = [['ccRCC held-out KM (test)', 'logrank_p', np.nan, np.nan, p_test, len(tes
        ['ccRCC 10-fold CV C-index (train)', cv_cindex, np.nan, np.nan, np.nan, len(train), 'TCGA-KIRC_train', '08_prognostic_model.py', 'cv']]
 for _, r in metrics.iterrows():
     led.append(['C-index ' + r['cohort'], r['cindex'], np.nan, np.nan, np.nan, r['n'], r['cohort'], '08_prognostic_model.py', 'disc'])
-    for yy in ['auc_1yr','auc_3yr','auc_5yr']:
+    for yy in ['auc_1yr', 'auc_3yr', 'auc_5yr']:
         led.append([yy + ' ' + r['cohort'], r[yy], np.nan, np.nan, np.nan, r['n'], r['cohort'], '08_prognostic_model.py', 'disc'])
-pd.DataFrame(led, columns = ['claim','value','ci_low','ci_high','p','n','cohort','script','line']).to_csv(os.path.join(out, 'model_claim_ledger_partA.csv'), index = False)
+pd.DataFrame(led, columns = ['claim', 'value', 'ci_low', 'ci_high', 'p', 'n', 'cohort', 'script', 'line']).to_csv(os.path.join(out, 'model_claim_ledger_partA.csv'), index = False)
 
 print('genes:', model['genes'])
-print('cv C-index (train):', round(cv_cindex,3))
-print('held-out logrank p', format(p_test,'.2e'), '| braun logrank p', format(p_braun,'.2e'))
-print('random-gene test C-index mean', round(float(np.mean(rand_c)),3), '95pct', round(float(np.percentile(rand_c,95)),3))
+print('cv C-index (train):', round(cv_cindex, 3))
+print('held-out logrank p', format(p_test, '.2e'), '| braun logrank p', format(p_braun, '.2e'))
+print('random-gene test C-index mean', round(float(np.mean(rand_c)), 3), '95pct', round(float(np.percentile(rand_c, 95)), 3))

@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+# PCa immune-evasion arm. Runs on integrated.h5ad with cell labels joined from
+# Data/cell-annotations.csv; that file names the Distal samples "-Noninvolved" and the
+# benigns "-Whole", so barcodes are remapped before the join. All 75,089 cells and all
+# 32 samples (Benign/Distal/Involved/Tumor) are covered.
 import os, warnings
 warnings.filterwarnings("ignore")
 import numpy as np, pandas as pd, anndata as ad, decoupler as dc
@@ -6,7 +10,7 @@ import statsmodels.formula.api as smf
 np.random.seed(0)
 ROOT=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..",".."))
 TAB=os.path.join(ROOT,"analysis","pca_comparator","outputs","tables"); os.makedirs(TAB,exist_ok=True)
-A=ad.read_h5ad(os.path.join(ROOT,"prostate-cancer/Cleaned_Data/integrated_with_kfoury_labels.h5ad"))
+A=ad.read_h5ad(os.path.join(ROOT,"prostate-cancer/Cleaned_Data/integrated.h5ad"))
 s=A.raw.to_adata() if (A.raw is not None and A.raw.n_vars>=A.n_vars) else A.copy(); s.obs=A.obs.copy()
 MOD={"complement_C1Q":["C1QA","C1QB","C1QC"],"CLEC_LAM8":["C1QA","C1QB","C1QC","APOE","APOC1","TREM2","GPNMB","MERTK"],
      "RCC_skew_CORE":["C1QA","C1QB","C1QC","APOE","APOC1","TREM2"],"APOE_TREM2":["APOE","APOC1","TREM2","TYROBP"],
@@ -16,7 +20,16 @@ OUT={"CD8_exhaustion":["TOX","PDCD1","HAVCR2","LAG3","TIGIT","CTLA4","ENTPD1"],"
      "MHC_I_APM":["HLA-A","HLA-B","HLA-C","B2M","TAP1","TAP2","NLRC5"],"MHC_II_APC":["HLA-DRA","HLA-DRB1","HLA-DPA1","HLA-DPB1","CD74","CIITA"]}
 net=pd.concat([pd.DataFrame({"source":k,"target":[g for g in v if g in s.var_names],"weight":1.0}) for k,v in {**MOD,**OUT}.items()])
 dc.mt.aucell(s,net,tmin=2,verbose=False); SC=s.obsm["score_aucell"]
-ct=A.obs["kfoury_annotation"].astype(str).values
+
+ann=pd.read_csv(os.path.join(ROOT,"prostate-cancer/Data/cell-annotations.csv"),index_col=0)
+key=(A.obs_names.str.replace("-Distal_","-Noninvolved_",regex=False)
+                .str.replace("-Benign_","-Whole_",regex=False))
+ct=ann["annotation"].reindex(key).to_numpy()
+n_missing=int(pd.isna(ct).sum())
+print(f"[labels] {len(ct)-n_missing}/{len(ct)} cells annotated from cell-annotations.csv (missing {n_missing})")
+assert n_missing==0, "label join incomplete -- check barcode remap"
+ct=ct.astype(str)
+
 def cond(x):
     x=str(x)
     if "Benign" in x: return "Benign"
